@@ -106,4 +106,14 @@ public class Player : MonoBehaviour
 
         transform.position = pos;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Bullet bullet = collision.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            Destroy(gameObject);
+            Destroy(bullet);
+        }
+    }
 }
