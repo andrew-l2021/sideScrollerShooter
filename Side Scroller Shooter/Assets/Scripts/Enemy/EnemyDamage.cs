@@ -10,6 +10,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            print("damaging the player");
             collision.GetComponent<Health>().TakeDamage(damage);
             Destroy(gameObject);
         }

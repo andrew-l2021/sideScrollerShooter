@@ -37,13 +37,14 @@ public class Player : MonoBehaviour
 
         //Shooting
         shoot = Input.GetKey(KeyCode.R);
-        print(shoot);
         if (shoot) //Spam shooting or Hold "R" shooting (limited to fireRate)
         {
             if (timer > fireRate + lastShot)
             {
+                print("should be firing");
                 foreach (Gun gun in guns)
                 {
+                    print("firing");
                     gun.Shoot();
                 }
                 lastShot = timer;

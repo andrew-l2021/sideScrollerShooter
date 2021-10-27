@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
+    [SerializeField] private float maxHealth;
     [SerializeField] private float startingHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
@@ -26,11 +27,12 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     public void TakeDamage(float _damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, maxHealth);
         Debug.Log("Player Health: " + currentHealth);
 
         if (currentHealth <= 0 && !dead)
         {
+            print("I'm dead!");
             GetComponent<Player>().enabled = false;
             dead = true;
         }
@@ -51,8 +53,22 @@ public class Health : MonoBehaviour
 
     public void AddHealth(float _value)
     {
-        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        maxHealth += _value;
+
+        if(currentHealth + _value > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = Mathf.Clamp(currentHealth + _value, 0, maxHealth); 
+        }
+
+        print("CurrentHealth: " + currentHealth);
+
     }
+
+    
 
     /*private IEnumerator Invulnerability()
     {
