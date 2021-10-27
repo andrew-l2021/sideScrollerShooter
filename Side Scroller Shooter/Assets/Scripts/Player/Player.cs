@@ -118,4 +118,9 @@ public class Player : MonoBehaviour
             Destroy(bullet);
         }
     }
+
+    public void IncreaseFireRate(float val)
+    {
+        fireRate += val;
+    }
 }
