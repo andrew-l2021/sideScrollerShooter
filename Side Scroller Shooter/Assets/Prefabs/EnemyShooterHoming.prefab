@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 653443567332140038}
   - component: {fileID: 653443567332140153}
   - component: {fileID: -5876092689202300602}
+  - component: {fileID: 2156877215580626060}
   m_Layer: 0
   m_Name: EnemyShooterHoming
   m_TagString: Enemy
@@ -177,8 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1149adfa276b4914fbba38729d25fafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  bullet: {fileID: 0}
+  bullet: {fileID: 644714531594694870, guid: fe31c6bbd6567e644b1d21f92f7d43c2, type: 3}
   bulletParent: {fileID: 653443567094315141}
   fireRate: 3
 --- !u!114 &653443567332140153
@@ -207,3 +207,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!114 &2156877215580626060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653443567332140156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0cd87360c33504f9a21e09fc29a60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2

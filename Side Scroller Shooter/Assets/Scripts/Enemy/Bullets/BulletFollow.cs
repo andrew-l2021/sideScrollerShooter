@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletFollow : MonoBehaviour
+public class BulletFollow : MonoBehaviour
 {
     GameObject target;
     [SerializeField] private float speed;

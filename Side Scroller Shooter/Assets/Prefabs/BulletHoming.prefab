@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 644714531594694867}
   - component: {fileID: 1851450955767053962}
   m_Layer: 0
-  m_Name: HomingEnemy
+  m_Name: BulletHoming
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
