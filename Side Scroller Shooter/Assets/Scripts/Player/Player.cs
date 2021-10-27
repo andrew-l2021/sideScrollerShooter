@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] float Speed = 3;
     [SerializeField] float fireRate;
     float timer = 0;
+    float defaultSpeed;
     Gun[] guns;
 
     bool moveUp;
@@ -18,10 +19,15 @@ public class Player : MonoBehaviour
     bool shootUp; //shootUp differentiates between holding R and spamming R
     float lastShot = 0;
 
+    //bufftimers
+    float speedTime = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
         guns = transform.GetComponentsInChildren<Gun>();
+        defaultSpeed = Speed;
         //gunShoot = gunFireRate.GetComponent<Gun>();
     }
 
@@ -34,6 +40,19 @@ public class Player : MonoBehaviour
         moveRight = Input.GetKey(KeyCode.RightArrow);
 
         timer += Time.deltaTime;
+
+        //counts time for speed up buff
+        if (speedTime > 0)
+        {
+            print("speeding!");
+            speedTime -= Time.deltaTime;
+
+            if(speedTime <= 0 )
+            {
+                //when the the timer is up end the speedboost
+                Speed = defaultSpeed;
+            }
+        }
 
         //Shooting
         shoot = Input.GetKey(KeyCode.R);
@@ -122,5 +141,11 @@ public class Player : MonoBehaviour
     public void IncreaseFireRate(float val)
     {
         fireRate += val;
+    }
+
+    public void TemporarilyIncreaseSpeed(float val, int time)
+    {
+        Speed += val;
+        speedTime = time;
     }
 }
