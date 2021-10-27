@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
         //Shooting
         shoot = Input.GetKey(KeyCode.R);
+        print(shoot);
         if (shoot) //Spam shooting or Hold "R" shooting (limited to fireRate)
         {
             if (timer > fireRate + lastShot)
