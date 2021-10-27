@@ -1,20 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &821470468
+--- !u!114 &401479107484478871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2156675011032790195}
+  m_GameObject: {fileID: 8392602562219256647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3937d34cede821a408a1180952848d87, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f8256ba42f976b48a01e887a25d0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBuff: 5
-  buffTime: 5
---- !u!1001 &8755958277098119077
+  damageBuff: 0
+  damageTime: 0
+--- !u!1001 &1159085675763302481
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -23,7 +23,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7236552152729070358, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
       propertyPath: m_Name
-      value: SpeedBuff
+      value: Damage Buff
       objectReference: {fileID: 0}
     - target: {fileID: 7236552152729070359, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
       propertyPath: m_RootOrder
@@ -69,18 +69,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236552153284887452, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.81
+      objectReference: {fileID: 0}
     - target: {fileID: 7236552153284887454, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236552153284887454, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
       propertyPath: m_Color.g
-      value: 0.19141698
+      value: 0.3728287
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7236552153284887454, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1642015795, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
---- !u!1 &2156675011032790195 stripped
+--- !u!1 &8392602562219256647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7236552152729070358, guid: 527374e12f53e7246b16489e4987e7d6, type: 3}
-  m_PrefabInstance: {fileID: 8755958277098119077}
+  m_PrefabInstance: {fileID: 1159085675763302481}
   m_PrefabAsset: {fileID: 0}

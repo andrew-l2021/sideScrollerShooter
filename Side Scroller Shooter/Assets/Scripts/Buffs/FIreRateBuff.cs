@@ -5,6 +5,7 @@ using UnityEngine;
 public class FIreRateBuff : MonoBehaviour
 {
     [SerializeField] protected float fireRateBuff;
+    [SerializeField] protected int fireRateTime;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +13,7 @@ public class FIreRateBuff : MonoBehaviour
         if (collision.tag == "Player")
         {
             print("adding " + fireRateBuff + " firerate to player");
-            collision.GetComponent<Player>().IncreaseFireRate(fireRateBuff);
+            collision.GetComponent<Player>().TemporarilyIncreaseFireRate(fireRateBuff, fireRateTime);
             Destroy(gameObject);
         }
     }

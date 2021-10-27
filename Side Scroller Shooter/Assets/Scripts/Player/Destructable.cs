@@ -12,6 +12,10 @@ public class Destructable : MonoBehaviour
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
+    private int damage = 1;
+    
+    //timer
+    private float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,19 @@ public class Destructable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(timer > 0)
+        {
+            print("damage boost!");
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                //when the the timer is up end the damage boost
+                damage = 1;
+            }
+        }
+
         if (transform.position.x < 7.8f)
         {
             canBeDestroyed = true;
@@ -33,7 +50,7 @@ public class Destructable : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
-            currentHealth = Mathf.Clamp(currentHealth - 1, 0, startingHealth); //1 refers to basic bullet damage to enemies
+            currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth); //1 refers to basic bullet damage to enemies
             Debug.Log("Enemy Health: " + currentHealth);
 
             if (!canBeDestroyed)
@@ -47,5 +64,11 @@ public class Destructable : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void TemporarilyIncreaseDamage(float val, float time)
+    {
+        damage = (int) val;
+        timer = time;
     }
 }

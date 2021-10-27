@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] float fireRate;
     float timer = 0;
     float defaultSpeed;
+    float defaultFireRate;
     Gun[] guns;
 
     bool moveUp;
@@ -19,8 +20,9 @@ public class Player : MonoBehaviour
     bool shootUp; //shootUp differentiates between holding R and spamming R
     float lastShot = 0;
 
-    //bufftimers
+    //buff timers
     float speedTime = 0;
+    float fireRateTime = 0;
 
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     {
         guns = transform.GetComponentsInChildren<Gun>();
         defaultSpeed = Speed;
+        defaultFireRate = fireRate;
         //gunShoot = gunFireRate.GetComponent<Gun>();
     }
 
@@ -51,6 +54,19 @@ public class Player : MonoBehaviour
             {
                 //when the the timer is up end the speedboost
                 Speed = defaultSpeed;
+            }
+        }
+
+        //counts time for fire rate buff
+        if (fireRateTime > 0)
+        {
+            print("fire rate increased!");
+            fireRateTime -= Time.deltaTime;
+
+            if (fireRateTime <= 0)
+            {
+                //when the the timer is up end the speedboost
+                fireRate = fireRate;
             }
         }
 
@@ -138,9 +154,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void IncreaseFireRate(float val)
+    public void TemporarilyIncreaseFireRate(float val, int time)
     {
         fireRate += val;
+        fireRateTime = time;
     }
 
     public void TemporarilyIncreaseSpeed(float val, int time)
@@ -148,4 +165,6 @@ public class Player : MonoBehaviour
         Speed += val;
         speedTime = time;
     }
+
+    
 }
