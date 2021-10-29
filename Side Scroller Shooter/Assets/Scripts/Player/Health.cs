@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private float maxHealth;
-    [SerializeField] private float startingHealth;
+    [SerializeField] private float startingHealth = 100;
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
@@ -51,17 +51,17 @@ public class Health : MonoBehaviour
         }*/
     }
 
-    public void AddHealth(float _value)
+    public void AddHealth(float healthModifier)
     {
-        maxHealth += _value;
+        maxHealth += healthModifier;
 
-        if(currentHealth + _value > maxHealth)
+        if(currentHealth + healthModifier > maxHealth)
         {
             currentHealth = maxHealth;
         }
         else
         {
-            currentHealth = Mathf.Clamp(currentHealth + _value, 0, maxHealth); 
+            currentHealth = Mathf.Clamp(currentHealth + healthModifier, 0, maxHealth); 
         }
 
         print("CurrentHealth: " + currentHealth);
