@@ -20,10 +20,12 @@ public class Gun : MonoBehaviour
         direction = (transform.localRotation * Vector2.right).normalized;
     }
 
-    public void Shoot()
+    public void Shoot(float damagePercentageModifier)
     {
         GameObject go = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
         Bullet goBullet = go.GetComponent<Bullet>();
+        Debug.Log("Bullet Damage: " + goBullet.bulletDamage * damagePercentageModifier);
+        goBullet.bulletDamage *= damagePercentageModifier;
         goBullet.direction = direction;
     }
 }

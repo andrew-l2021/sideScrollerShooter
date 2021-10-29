@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class DamageBuff : MonoBehaviour
 {
-    [SerializeField] protected int damageBuff;
+    [SerializeField] protected float damagePercentBuff;
     [SerializeField] protected int damageTime;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        print("triggered");
         if (collision.tag == "Player")
         {
-            print("adding " + damageBuff + " firerate to player for " + damageTime);
-            collision.GetComponent<Destructable>().TemporarilyIncreaseDamage(damageBuff, damageTime);
+            collision.GetComponent<Player>().TemporarilyIncreaseDamage(damagePercentBuff, damageTime);
             Destroy(gameObject);
         }
 

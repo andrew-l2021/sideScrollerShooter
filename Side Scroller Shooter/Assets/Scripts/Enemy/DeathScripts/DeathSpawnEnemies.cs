@@ -54,7 +54,7 @@ public class DeathSpawnEnemies : MonoBehaviour
             //subtract bulletDamage from the currentHealth of the Enemy
             Bullet bullet = collision.GetComponent<Bullet>();
             currentHealth = Mathf.Clamp(currentHealth - bullet.bulletDamage, 0, startingHealth);
-            Debug.Log("Enemy Health: " + currentHealth);
+            //Debug.Log("Enemy Health: " + currentHealth);
 
             //ignore destroy code if Enemy cannot be destroyed
             if (!canBeDestroyed)

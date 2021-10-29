@@ -10,10 +10,8 @@ public class SpeedBuff : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        //print("triggered");
         if (collision.tag == "Player")
         {
-            //print("adding " + speedBuff + " speed to player for " + buffTime);
             collision.GetComponent<Player>().TemporarilyIncreaseSpeed(speedBuff, buffTime);
             Destroy(gameObject);
         }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Inspector variables (speed and fireRate should never be modified, only called)
+    //Inspector variables (these variables should never be modified, only called)
     [SerializeField] float speed = 3;
     [SerializeField] float fireRate;
+    [SerializeField] float damagePercentage = 1.00F;
     
 
     //Instance variables
@@ -27,10 +28,12 @@ public class Player : MonoBehaviour
     //Property variables
     float currentSpeed;
     float currentFireRate;
+    float currentDamagePercentage;
 
     //Buff Timer variables
-    float speedTime = 0;
-    float fireRateTime = 0;
+    float speedBuffTime = 0;
+    float fireRateBuffTime = 0;
+    float damageBuffTime = 0;
 
 
     // Start is called before the first frame update
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
         guns = transform.GetComponentsInChildren<Gun>();
         currentSpeed = speed;
         currentFireRate = fireRate;
+        currentDamagePercentage = damagePercentage;
         //gunShoot = gunFireRate.GetComponent<Gun>();
     }
 
@@ -53,12 +57,11 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime;
 
         //counts time for speed up buff
-        if (speedTime > 0)
+        if (speedBuffTime > 0)
         {
-            Debug.Log("Speeding!");
-            speedTime -= Time.deltaTime;
+            speedBuffTime -= Time.deltaTime;
 
-            if(speedTime <= 0 )
+            if(speedBuffTime <= 0 )
             {
                 //when the the timer is up end the speedboost
                 currentSpeed = speed;
@@ -66,15 +69,26 @@ public class Player : MonoBehaviour
         }
 
         //counts time for fire rate buff
-        if (fireRateTime > 0)
+        if (fireRateBuffTime > 0)
         {
-            Debug.Log("Fire Rate Increased!");
-            fireRateTime -= Time.deltaTime;
+            fireRateBuffTime -= Time.deltaTime;
 
-            if (fireRateTime <= 0)
+            if (fireRateBuffTime <= 0)
             {
                 //when the the timer is up end the speedboost
                 currentFireRate = fireRate;
+            }
+        }
+
+        //counts time for damage buff
+        if (damageBuffTime > 0)
+        {
+            damageBuffTime -= Time.deltaTime;
+
+            if (damageBuffTime <= 0)
+            {
+                //when the the timer is up end the speedboost
+                currentDamagePercentage = damagePercentage;
             }
         }
 
@@ -86,7 +100,7 @@ public class Player : MonoBehaviour
             {
                 foreach (Gun gun in guns)
                 {
-                    gun.Shoot();
+                    gun.Shoot(currentDamagePercentage);
                 }
                 lastShot = timer;
             }
@@ -163,16 +177,24 @@ public class Player : MonoBehaviour
     public void TemporarilyIncreaseFireRate(float fireRateModifier, int time)
     {
         //using subtract because rate of fire increases as currentFireRate decreases
+        Debug.Log("Fire Rate Increased!");
         currentFireRate -= fireRateModifier;
-        fireRateTime = time;
+        fireRateBuffTime = time;
     }
 
     public void TemporarilyIncreaseSpeed(float speedModifier, int time)
     {
         //using addition because speed increases as currentSpeed increases
+        Debug.Log("Speeding!");
         currentSpeed += speedModifier;
-        speedTime = time;
+        speedBuffTime = time;
     }
 
-    
+    public void TemporarilyIncreaseDamage(float damageModifier, int time)
+    {
+        //1 = 100% damage, 1 * (1 + 0.20) = 1.20 = 120%
+        Debug.Log("Damage Increased!");
+        currentDamagePercentage *= (1 + damageModifier);
+        damageBuffTime = time;
+    }
 }

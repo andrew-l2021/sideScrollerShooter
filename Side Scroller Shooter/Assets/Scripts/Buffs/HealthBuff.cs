@@ -10,10 +10,8 @@ public class HealthBuff : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        print("triggered");
         if (collision.tag == "Player")
         {
-            print("adding " + healthAdded + " health to player");
             collision.GetComponent<Health>().AddHealth(healthAdded);
             Destroy(gameObject);
         }

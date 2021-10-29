@@ -9,10 +9,8 @@ public class FireRateBuff : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        //print("triggered");
         if (collision.tag == "Player")
         {
-            //print("adding " + fireRateBuff + " firerate to player");
             collision.GetComponent<Player>().TemporarilyIncreaseFireRate(fireRateBuff, fireRateTime);
             Destroy(gameObject);
         }
