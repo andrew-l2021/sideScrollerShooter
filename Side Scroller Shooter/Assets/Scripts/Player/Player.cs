@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float Speed = 3;
+    //Inspector variables (speed and fireRate should never be modified, only called)
+    [SerializeField] float speed = 3;
     [SerializeField] float fireRate;
+    
+
+    //Instance variables
     float timer = 0;
     Gun[] guns;
 
+    //Movement variables
     bool moveUp;
     bool moveDown;
     bool moveLeft;
     bool moveRight;
 
+    //Shooting variables
     bool shoot;
     bool shootUp; //shootUp differentiates between holding R and spamming R
     float lastShot = 0;
+
+    //Property variables
+    float currentSpeed;
+    float currentFireRate;
+
+    //Buff Timer variables
+    float speedTime = 0;
+    float fireRateTime = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
         guns = transform.GetComponentsInChildren<Gun>();
+        currentSpeed = speed;
+        currentFireRate = fireRate;
         //gunShoot = gunFireRate.GetComponent<Gun>();
     }
 
@@ -35,11 +52,37 @@ public class Player : MonoBehaviour
 
         timer += Time.deltaTime;
 
+        //counts time for speed up buff
+        if (speedTime > 0)
+        {
+            Debug.Log("Speeding!");
+            speedTime -= Time.deltaTime;
+
+            if(speedTime <= 0 )
+            {
+                //when the the timer is up end the speedboost
+                currentSpeed = speed;
+            }
+        }
+
+        //counts time for fire rate buff
+        if (fireRateTime > 0)
+        {
+            Debug.Log("Fire Rate Increased!");
+            fireRateTime -= Time.deltaTime;
+
+            if (fireRateTime <= 0)
+            {
+                //when the the timer is up end the speedboost
+                currentFireRate = fireRate;
+            }
+        }
+
         //Shooting
         shoot = Input.GetKey(KeyCode.R);
         if (shoot) //Spam shooting or Hold "R" shooting (limited to fireRate)
         {
-            if (timer > fireRate + lastShot)
+            if (timer > currentFireRate + lastShot)
             {
                 foreach (Gun gun in guns)
                 {
@@ -48,7 +91,7 @@ public class Player : MonoBehaviour
                 lastShot = timer;
             }
         }else{
-            lastShot = timer - fireRate;
+            lastShot = timer - currentFireRate;
         }
     }
 
@@ -56,7 +99,7 @@ public class Player : MonoBehaviour
     {
         Vector2 pos = transform.position;
 
-        float moveAmount = Speed * Time.fixedDeltaTime;
+        float moveAmount = currentSpeed * Time.fixedDeltaTime;
         Vector2 move = Vector2.zero;
 
         //Basic movement
@@ -116,4 +159,20 @@ public class Player : MonoBehaviour
             Destroy(bullet);
         }
     }
+
+    public void TemporarilyIncreaseFireRate(float fireRateModifier, int time)
+    {
+        //using subtract because rate of fire increases as currentFireRate decreases
+        currentFireRate -= fireRateModifier;
+        fireRateTime = time;
+    }
+
+    public void TemporarilyIncreaseSpeed(float speedModifier, int time)
+    {
+        //using addition because speed increases as currentSpeed increases
+        currentSpeed += speedModifier;
+        speedTime = time;
+    }
+
+    
 }
