@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  fireRate: 0.4
+  fireRate: 0.2
 --- !u!61 &269709430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -442,11 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.66
+      value: 5.63
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.74
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -551,11 +551,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.327243
+      value: 6.49
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0055735707
+      value: -3.57
       objectReference: {fileID: 0}
     - target: {fileID: 3982217399409811574, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
       propertyPath: m_LocalPosition.z

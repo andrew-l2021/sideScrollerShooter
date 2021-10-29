@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 187162364329538100}
   - component: {fileID: 187162364329538101}
-  - component: {fileID: 8565664191243313654}
   - component: {fileID: -2788241068688957003}
   - component: {fileID: -7148258034443204876}
   - component: {fileID: -4100946738066673137}
   - component: {fileID: -1053425491635003578}
+  - component: {fileID: -1429170087163375832}
   m_Layer: 0
   m_Name: BulletLinearToPos
   m_TagString: Enemy
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8565664191243313654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187162364329538102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6927781b6079cc49825751c433b4e3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!50 &-2788241068688957003
 Rigidbody2D:
   serializedVersion: 4
@@ -173,3 +160,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  timedDeath: 1
+  lifetime: 2
+--- !u!114 &-1429170087163375832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187162364329538102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0cd87360c33504f9a21e09fc29a60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5

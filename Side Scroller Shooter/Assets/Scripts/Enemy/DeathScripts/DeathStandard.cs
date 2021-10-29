@@ -7,9 +7,9 @@ public class DeathStandard : MonoBehaviour
     
 
     //Inspector Variables
-    [Header("Enemy Health")]
+    [Header("Health Parameters")]
     [SerializeField] private float startingHealth;
-    [Header("Automatic Death")]
+    [Header("Automatic Death Parameters")]
     [SerializeField] public bool timedDeath = false;
     [SerializeField] public float lifetime = 5;
 
@@ -50,15 +50,21 @@ public class DeathStandard : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
-            currentHealth = Mathf.Clamp(currentHealth - 1, 0, startingHealth); //1 refers to basic bullet damage to enemies
+            //subtract bulletDamage from the currentHealth of the Enemy
+            Bullet bullet = collision.GetComponent<Bullet>();
+            currentHealth = Mathf.Clamp(currentHealth - bullet.bulletDamage, 0, startingHealth);
             Debug.Log("Enemy Health: " + currentHealth);
 
+            //ignore destroy code if Enemy cannot be destroyed
             if (!canBeDestroyed)
             {
                 return;
             }
-            Bullet bullet = collision.GetComponent<Bullet>();
+
+            //destroy Bullet object
             Destroy(bullet.gameObject);
+
+            //destroy object if health drops to or below 0
             if (currentHealth <= 0 && !dead)
             {
                 Destroy(gameObject);

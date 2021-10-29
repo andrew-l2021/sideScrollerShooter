@@ -13,12 +13,11 @@ public class MoveLinearToPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //getting position, calculating and normalizing velocity vector based on Player position and Enemy spawn position
+        //getting position, calculating and normalizing velocity vector based on Player position and Enemy spawn position, applying velocity to Rigidbody2D
         enemyComponent = GetComponent<Rigidbody2D>();
         pos = transform.position; 
         targetLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Vector2 velocityVector = (targetLocation - pos).normalized * moveSpeed;
-        enemyComponent.velocity = velocityVector;
+        enemyComponent.velocity = (targetLocation - pos).normalized * moveSpeed;
     }
 
     // Update is called once per frame
@@ -27,8 +26,4 @@ public class MoveLinearToPos : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
-    {        
-
-    }
 }

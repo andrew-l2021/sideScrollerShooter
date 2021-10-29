@@ -24,11 +24,12 @@ public class MoveIntervalToPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        
     }
 
     private void FixedUpdate()
     {
+        timer += Time.fixedDeltaTime;
         pos = transform.position;
 
         if(active && timer > UpTimeInterval){ //switch from active to inactive

@@ -51,15 +51,21 @@ public class DeathSpawnEnemies : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
-            currentHealth = Mathf.Clamp(currentHealth - 1, 0, startingHealth); //1 refers to basic bullet damage to enemies
+            //subtract bulletDamage from the currentHealth of the Enemy
+            Bullet bullet = collision.GetComponent<Bullet>();
+            currentHealth = Mathf.Clamp(currentHealth - bullet.bulletDamage, 0, startingHealth);
             Debug.Log("Enemy Health: " + currentHealth);
 
+            //ignore destroy code if Enemy cannot be destroyed
             if (!canBeDestroyed)
             {
                 return;
             }
-            Bullet bullet = collision.GetComponent<Bullet>();
+
+            //destroy Bullet object
             Destroy(bullet.gameObject);
+
+            //destroy object if health drops to or below 0 and spawn children enemies
             if (currentHealth <= 0 && !dead)
             {
                 if(childPositionRelativeToParent){
