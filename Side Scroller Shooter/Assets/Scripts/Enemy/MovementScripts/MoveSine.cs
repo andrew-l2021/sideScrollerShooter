@@ -36,11 +36,8 @@ public class MoveSine : MonoBehaviour
 
         //x position calculation
         pos.x -= moveSpeed * Time.deltaTime;
-        if (pos.x < -15)
-        {
-            Destroy(gameObject);
-        }
 
+        //update position
         transform.position = pos;
     }
 }

@@ -7,15 +7,18 @@ public class MoveLinearToPos : MonoBehaviour
 {
     Vector2 targetLocation;
     Vector2 pos;
-    float slopeToPlayer;
     [SerializeField] float moveSpeed = 5;
+    Rigidbody2D enemyComponent;
 
     // Start is called before the first frame update
     void Start()
     {
-        pos = transform.position;
-        targetLocation = GameObject.Find("Player").transform.position;
-        slopeToPlayer = (targetLocation.y - pos.y)/(targetLocation.x - pos.x);
+        //getting position, calculating and normalizing velocity vector based on Player position and Enemy spawn position
+        enemyComponent = GetComponent<Rigidbody2D>();
+        pos = transform.position; 
+        targetLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector2 velocityVector = (targetLocation - pos).normalized * moveSpeed;
+        enemyComponent.velocity = velocityVector;
     }
 
     // Update is called once per frame
@@ -26,16 +29,6 @@ public class MoveLinearToPos : MonoBehaviour
 
     private void FixedUpdate()
     {        
-        pos = transform.position;
 
-        pos.y -= slopeToPlayer * moveSpeed * Time.deltaTime;
-        pos.x -= moveSpeed * Time.deltaTime;
-
-        if (pos.x < -15)
-        {
-            Destroy(gameObject);
-        }
-
-        transform.position = pos;
     }
 }
