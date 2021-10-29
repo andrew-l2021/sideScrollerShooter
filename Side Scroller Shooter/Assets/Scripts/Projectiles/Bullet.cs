@@ -5,28 +5,33 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public Vector2 direction = new Vector2(1, 0);
-    public float speed = 2;
+    //Inspector variables
+    [SerializeField] public Vector2 direction = new Vector2(1, 0);
+    [SerializeField] public float speed = 20;
+    [SerializeField] private float degreeRotation = 0;
+    [SerializeField] public float bulletDamage = 1;
 
-    public Vector2 velocity;
+    //Instance variables
+    private Vector2 pos;
 
     // Start is called before the first frame update
     void Start()
     {
+        transform.rotation = Quaternion.Euler(Vector3.forward * degreeRotation);
         Destroy(gameObject, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity = direction * speed;
+        
     }
 
     private void FixedUpdate()
     {
-        Vector2 pos = transform.position;
+        pos = transform.position;
 
-        pos += velocity * Time.fixedDeltaTime;
+        pos += (Vector2)transform.right * speed * Time.fixedDeltaTime;
 
         transform.position = pos;
     }
