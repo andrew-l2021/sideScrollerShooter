@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeathStandard : MonoBehaviour
 {
-    
 
     //Inspector Variables
     [Header("Health Parameters")]

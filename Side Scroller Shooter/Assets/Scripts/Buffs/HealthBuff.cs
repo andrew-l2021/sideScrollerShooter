@@ -12,7 +12,7 @@ public class HealthBuff : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<Health>().AddHealth(healthAdded);
+            collision.GetComponent<Health>().IncreaseMaxHealth(healthAdded);
             Destroy(gameObject);
         }
     }

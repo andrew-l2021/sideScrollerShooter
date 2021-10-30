@@ -49,9 +49,11 @@ public class Health : MonoBehaviour
         }*/
     }
 
-    public void AddHealth(float _value)
+    public void IncreaseMaxHealth(float healthAdded)
     {
-        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        //currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        startingHealth += healthAdded;
+        Debug.Log(startingHealth);
     }
 
     /*private IEnumerator Invulnerability()

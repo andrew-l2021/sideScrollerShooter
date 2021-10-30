@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGun : MonoBehaviour
+public class EnemyFollow : MonoBehaviour
 {
+    [SerializeField] private float speed;
     private Transform player;
     public GameObject bullet;
     public GameObject bulletParent;
@@ -19,7 +20,8 @@ public class EnemyGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nextFireTime < Time.time && bulletParent.transform.position.x > -10)
+        transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+        if (nextFireTime < Time.time)
         {
             Instantiate(bullet, bulletParent.transform.position, Quaternion.identity);
             nextFireTime = Time.time + fireRate;

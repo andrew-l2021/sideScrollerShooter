@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //Inspector variables (these variables should never be modified, only called)
+    [Header("Stats")]
     [SerializeField] float speed = 3;
     [SerializeField] float fireRate;
     [SerializeField] float damagePercentage = 1.00F;
-    
 
     //Instance variables
     float timer = 0;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     //Shooting variables
     bool shoot;
-    bool shootUp; //shootUp differentiates between holding R and spamming R
+    bool shootDown; //shootDown differentiates between holding R and spamming R
     float lastShot = 0;
 
     //Property variables
@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     float speedBuffTime = 0;
     float fireRateBuffTime = 0;
     float damageBuffTime = 0;
-
 
     // Start is called before the first frame update
     void Start()

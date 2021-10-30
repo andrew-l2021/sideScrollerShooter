@@ -13,5 +13,10 @@ public class EnemyDamage : MonoBehaviour
             collision.GetComponent<Health>().TakeDamage(damage);
             Destroy(gameObject);
         }
+        if (collision.tag == "Shield")
+        {
+            collision.GetComponent<Shield>().DestroyShield();
+            Destroy(gameObject);
+        }
     }
 }
