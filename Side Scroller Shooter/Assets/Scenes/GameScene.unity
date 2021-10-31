@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 117972212}
   - component: {fileID: 117972214}
   - component: {fileID: 117972213}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: QBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 175528451}
   - component: {fileID: 175528453}
   - component: {fileID: 175528452}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 291367305}
   - component: {fileID: 291367307}
   - component: {fileID: 291367306}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 306577842}
   - component: {fileID: 306577844}
   - component: {fileID: 306577843}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 605685514}
   - component: {fileID: 605685513}
   - component: {fileID: 605685512}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 675816766}
   - component: {fileID: 675816765}
   - component: {fileID: 675816764}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: QBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 774977210}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: QBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333231218}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 1383341564}
   - component: {fileID: 1383341563}
   - component: {fileID: 1383341562}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 1442829985}
   - component: {fileID: 1442829984}
   - component: {fileID: 1442829983}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1495,7 +1495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838316337}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 1991108860}
   - component: {fileID: 1991108859}
   - component: {fileID: 1991108858}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1863,7 +1863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2109661887}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
