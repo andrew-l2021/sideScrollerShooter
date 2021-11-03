@@ -15,16 +15,14 @@ public class Player : MonoBehaviour
     [SerializeField] public float wBar = 100;
     [SerializeField] public float eBar = 100;
     [SerializeField] int maxComboInput = 2; //The maximum number of letters that can be inputted into a combo window
-    private char[] comboLetters = new char[9]; //Make sure the variable maxComboInput is NEVER greater than 8!
-    private int numQ = 0; //Number of q's, w's, and e's in combo window
-    private int numW = 0;
-    private int numE = 0;
-    public float currentq { get; private set; }
-    public float currentw { get; private set; }
-    public float currente { get; private set; }
+
+    [Header("QWE Bars (Higher Rate = Faster Regeneration)")]
+    [SerializeField] public float maxQRate; //Point increase per second
+    [SerializeField] public float maxWRate;
+    [SerializeField] public float maxERate;
 
     //Instance variables
-    float timer = 0;
+    [HideInInspector] public float timer = 0;
     Gun[] guns;
 
     //Movement variables
@@ -38,6 +36,15 @@ public class Player : MonoBehaviour
     bool pressSpace;
     bool presst;
 
+    //Combo variables
+    [HideInInspector] public char[] comboLetters = new char[9]; //Make sure the variable maxComboInput is NEVER greater than 8!
+    private int numQ = 0; //Number of q's, w's, and e's in combo window
+    private int numW = 0;
+    private int numE = 0;
+    public float currentq { get; private set; }
+    public float currentw { get; private set; }
+    public float currente { get; private set; }
+
     //Shooting variables
     bool shoot;
     float lastShot = 0;
@@ -46,6 +53,12 @@ public class Player : MonoBehaviour
     float currentSpeed;
     float currentFireRate;
     float currentDamagePercentage;
+
+    //Regeneration variables
+    [HideInInspector] public float timeLastBarChange = 0;
+    [HideInInspector] public float currentQRate;
+    [HideInInspector] public float currentWRate;
+    [HideInInspector] public float currentERate;
 
     //Buff Timer variables
     float speedBuffTime = 0;
@@ -62,6 +75,9 @@ public class Player : MonoBehaviour
         currentq = qBar;
         currentw = wBar;
         currente = eBar;
+        currentQRate = maxQRate / 2;
+        currentWRate = maxWRate / 2;
+        currentERate = maxERate / 2;
     }
 
     // Update is called once per frame
@@ -159,6 +175,33 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(ExecuteCombo());
         }
+
+        //QWE Bar Regeneration
+
+        if (timer - timeLastBarChange > 5 && currentq < qBar)
+        {
+            currentq += currentQRate * Time.deltaTime;
+            if (currentQRate < maxQRate)
+            {
+                currentQRate *= 1.0001f;
+            }
+        }
+        if (timer - timeLastBarChange > 5 && currentw < wBar)
+        {
+            currentw += currentWRate * Time.deltaTime;
+            if (currentWRate < maxWRate)
+            {
+                currentWRate *= 1.0001f;
+            }
+        }
+        if (timer - timeLastBarChange > 5 && currente < eBar)
+        {
+            currente += currentERate * Time.deltaTime;
+            if (currentERate < maxERate)
+            {
+                currentERate *= 1.0001f;
+            }
+        }
     }
 
     private void AddCombo(char comboLetter) //Adds a letter to the combo array, spanning from left to right.
@@ -209,6 +252,8 @@ public class Player : MonoBehaviour
                         //PLACEHOLDER HERE TO CALL ACTUAL QQQ COMBO
                         yield return StartCoroutine(WaitFrames(50)); //Gives a 50-frame window between each combo
                         currentq -= 45;
+                        timeLastBarChange = timer;
+                        currentQRate = maxQRate / 2;
                     } else
                     {
                         Debug.Log("Not enough power for qqq combo!");
@@ -225,6 +270,8 @@ public class Player : MonoBehaviour
                             //PLACEHOLDER HERE TO CALL ACTUAL QQ COMBO
                             yield return StartCoroutine(WaitFrames(50));
                             currentq -= 20;
+                            timeLastBarChange = timer;
+                            currentQRate = maxQRate / 2;
                         } else
                         {
                             Debug.Log("Not enough power for qq combo!");
@@ -238,7 +285,9 @@ public class Player : MonoBehaviour
                             Debug.Log("q combo!");
                             //PLACEHOLDER HERE TO CALL ACTUAL Q COMBO
                             yield return StartCoroutine(WaitFrames(50));
-                            currentq -= 5; 
+                            currentq -= 5;
+                            timeLastBarChange = timer;
+                            currentQRate = maxQRate / 2;
                         } else
                         {
                             Debug.Log("Not enough power for q combo!");
@@ -259,6 +308,8 @@ public class Player : MonoBehaviour
                         //PLACEHOLDER HERE TO CALL ACTUAL WWW COMBO
                         yield return StartCoroutine(WaitFrames(50));
                         currentw -= 45;
+                        timeLastBarChange = timer;
+                        currentWRate = maxWRate / 2;
                     }
                     else
                     {
@@ -276,6 +327,8 @@ public class Player : MonoBehaviour
                             //PLACEHOLDER HERE TO CALL ACTUAL WW COMBO
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 20;
+                            timeLastBarChange = timer;
+                            currentWRate = maxWRate / 2;
                         }
                         else
                         {
@@ -291,6 +344,8 @@ public class Player : MonoBehaviour
                             //PLACEHOLDER HERE TO CALL ACTUAL W COMBO
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 5;
+                            timeLastBarChange = timer;
+                            currentWRate = maxWRate / 2;
                         }
                         else
                         {
@@ -312,6 +367,8 @@ public class Player : MonoBehaviour
                         //PLACEHOLDER HERE TO CALL ACTUAL EEE COMBO
                         yield return StartCoroutine(WaitFrames(50));
                         currente -= 45;
+                        timeLastBarChange = timer;
+                        currentERate = maxERate / 2;
                     }
                     else
                     {
@@ -329,6 +386,8 @@ public class Player : MonoBehaviour
                             //PLACEHOLDER HERE TO CALL ACTUAL WW COMBO
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 20;
+                            timeLastBarChange = timer;
+                            currentERate = maxERate / 2;
                         }
                         else
                         {
@@ -344,6 +403,8 @@ public class Player : MonoBehaviour
                             //PLACEHOLDER HERE TO CALL ACTUAL E COMBO
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 5;
+                            timeLastBarChange = timer;
+                            currentERate = maxERate / 2;
                         }
                         else
                         {
