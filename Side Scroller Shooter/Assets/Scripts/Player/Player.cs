@@ -60,7 +60,9 @@ public class Player : MonoBehaviour
     public float currentDamagePercentage { get; private set; }
 
     //Regeneration variables
-    [HideInInspector] public float timeLastBarChange = 0;
+    [HideInInspector] public float timeLastQBarChange = 0;
+    [HideInInspector] public float timeLastWBarChange = 0;
+    [HideInInspector] public float timeLastEBarChange = 0;
     [HideInInspector] public float currentQRate;
     [HideInInspector] public float currentWRate;
     [HideInInspector] public float currentERate;
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour
 
         //QWE Bar Regeneration
 
-        if (timer - timeLastBarChange > 5 && currentq < qBar)
+        if (timer - timeLastQBarChange > 5 && currentq < qBar)
         {
             currentq += currentQRate * Time.deltaTime;
             if (currentQRate < maxQRate)
@@ -198,7 +200,7 @@ public class Player : MonoBehaviour
                 currentQRate *= 1.0001f;
             }
         }
-        if (timer - timeLastBarChange > 5 && currentw < wBar)
+        if (timer - timeLastWBarChange > 5 && currentw < wBar)
         {
             currentw += currentWRate * Time.deltaTime;
             if (currentWRate < maxWRate)
@@ -206,7 +208,7 @@ public class Player : MonoBehaviour
                 currentWRate *= 1.0001f;
             }
         }
-        if (timer - timeLastBarChange > 5 && currente < eBar)
+        if (timer - timeLastEBarChange > 5 && currente < eBar)
         {
             currente += currentERate * Time.deltaTime;
             if (currentERate < maxERate)
@@ -266,7 +268,7 @@ public class Player : MonoBehaviour
 
                         yield return StartCoroutine(WaitFrames(50)); //Gives a 50-frame window between each combo
                         currentq -= 45;
-                        timeLastBarChange = timer;
+                        timeLastQBarChange = timer;
                         currentQRate = maxQRate / 2;
                     } else
                     {
@@ -286,7 +288,7 @@ public class Player : MonoBehaviour
                             
                             yield return StartCoroutine(WaitFrames(50));
                             currentq -= 20;
-                            timeLastBarChange = timer;
+                            timeLastQBarChange = timer;
                             currentQRate = maxQRate / 2;
                         } else
                         {
@@ -304,7 +306,7 @@ public class Player : MonoBehaviour
 
                             yield return StartCoroutine(WaitFrames(50));
                             currentq -= 5;
-                            timeLastBarChange = timer;
+                            timeLastQBarChange = timer;
                             currentQRate = maxQRate / 2;
                         } else
                         {
@@ -328,7 +330,7 @@ public class Player : MonoBehaviour
 
                         yield return StartCoroutine(WaitFrames(50));
                         currentw -= 45;
-                        timeLastBarChange = timer;
+                        timeLastWBarChange = timer;
                         currentWRate = maxWRate / 2;
                     }
                     else
@@ -349,7 +351,7 @@ public class Player : MonoBehaviour
 
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 20;
-                            timeLastBarChange = timer;
+                            timeLastWBarChange = timer;
                             currentWRate = maxWRate / 2;
                         }
                         else
@@ -368,7 +370,7 @@ public class Player : MonoBehaviour
 
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 5;
-                            timeLastBarChange = timer;
+                            timeLastWBarChange = timer;
                             currentWRate = maxWRate / 2;
                         }
                         else
@@ -393,7 +395,7 @@ public class Player : MonoBehaviour
 
                         yield return StartCoroutine(WaitFrames(50));
                         currente -= 45;
-                        timeLastBarChange = timer;
+                        timeLastEBarChange = timer;
                         currentERate = maxERate / 2;
                     }
                     else
@@ -414,7 +416,7 @@ public class Player : MonoBehaviour
 
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 20;
-                            timeLastBarChange = timer;
+                            timeLastEBarChange = timer;
                             currentERate = maxERate / 2;
                         }
                         else
@@ -433,7 +435,7 @@ public class Player : MonoBehaviour
 
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 5;
-                            timeLastBarChange = timer;
+                            timeLastEBarChange = timer;
                             currentERate = maxERate / 2;
                         }
                         else
