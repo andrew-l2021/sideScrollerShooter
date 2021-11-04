@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 5
+  timedDeath: 0
+  lifetime: 5
 --- !u!50 &8209959607371746374
 Rigidbody2D:
   serializedVersion: 4
@@ -207,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
 --- !u!114 &-7463063941175694100
 MonoBehaviour:
   m_ObjectHideFlags: 0

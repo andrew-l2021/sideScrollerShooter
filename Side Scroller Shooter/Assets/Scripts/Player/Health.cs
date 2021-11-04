@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private float startingHealth;
+    [SerializeField] public float startingHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
@@ -21,6 +21,11 @@ public class Health : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         //spriteRend = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     // Update is called once per frame
@@ -53,7 +58,6 @@ public class Health : MonoBehaviour
     {
         //currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
         startingHealth += healthAdded;
-        Debug.Log(startingHealth);
     }
 
     /*private IEnumerator Invulnerability()

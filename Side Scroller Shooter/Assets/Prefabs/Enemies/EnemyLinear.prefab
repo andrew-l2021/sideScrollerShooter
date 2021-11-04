@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
 --- !u!114 &-3561620703887754238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,4 +176,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  degreeRotation: 0
