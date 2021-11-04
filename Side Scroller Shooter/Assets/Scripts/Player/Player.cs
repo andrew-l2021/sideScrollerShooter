@@ -49,10 +49,15 @@ public class Player : MonoBehaviour
     bool shoot;
     float lastShot = 0;
 
+    //Blaster variables
+    QBlaster qBlasterObject;
+    WBlaster wBlasterObject;
+    EBlaster eBlasterObject;
+
     //Property variables
     float currentSpeed;
     float currentFireRate;
-    float currentDamagePercentage;
+    public float currentDamagePercentage { get; private set; }
 
     //Regeneration variables
     [HideInInspector] public float timeLastBarChange = 0;
@@ -68,7 +73,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Gun initialization
         guns = transform.GetComponentsInChildren<Gun>();
+
+        //Blaster initialization
+        qBlasterObject = transform.GetComponentInChildren<QBlaster>();
+        wBlasterObject = transform.GetComponentInChildren<WBlaster>();
+        eBlasterObject = transform.GetComponentInChildren<EBlaster>();
+        
         currentSpeed = speed;
         currentFireRate = fireRate;
         currentDamagePercentage = damagePercentage;
@@ -139,7 +151,7 @@ public class Player : MonoBehaviour
             {
                 foreach (Gun gun in guns)
                 {
-                    gun.Shoot(currentDamagePercentage);
+                    gun.Shoot();
                 }
                 lastShot = timer;
             }
@@ -226,7 +238,7 @@ public class Player : MonoBehaviour
                 {
                     comboLetters[i] = comboLetter;
                     printArray();
-                    Debug.Log("Added combo in index " + i + " of array!");
+                    //Debug.Log("Added combo in index " + i + " of array!");
                     break;
                 }
             }
@@ -249,7 +261,9 @@ public class Player : MonoBehaviour
                 {
                     if (currentq >= 45) {
                         Debug.Log("qqq combo!");
-                        //PLACEHOLDER HERE TO CALL ACTUAL QQQ COMBO
+                        
+                        qBlasterObject.tripleCombo(); //"QQQ" combo execution
+
                         yield return StartCoroutine(WaitFrames(50)); //Gives a 50-frame window between each combo
                         currentq -= 45;
                         timeLastBarChange = timer;
@@ -267,7 +281,9 @@ public class Player : MonoBehaviour
                         if (currentq >= 20)
                         {
                             Debug.Log("qq combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL QQ COMBO
+
+                            qBlasterObject.doubleCombo(); //"QQ" combo execution
+                            
                             yield return StartCoroutine(WaitFrames(50));
                             currentq -= 20;
                             timeLastBarChange = timer;
@@ -283,7 +299,9 @@ public class Player : MonoBehaviour
                         if (currentq >= 5)
                         {
                             Debug.Log("q combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL Q COMBO
+
+                            qBlasterObject.singleCombo(); //"Q" combo execution
+
                             yield return StartCoroutine(WaitFrames(50));
                             currentq -= 5;
                             timeLastBarChange = timer;
@@ -305,7 +323,9 @@ public class Player : MonoBehaviour
                     if (currentw >= 45)
                     {
                         Debug.Log("www combo!");
-                        //PLACEHOLDER HERE TO CALL ACTUAL WWW COMBO
+
+                        wBlasterObject.tripleCombo(); //"WWW" combo execution
+
                         yield return StartCoroutine(WaitFrames(50));
                         currentw -= 45;
                         timeLastBarChange = timer;
@@ -324,7 +344,9 @@ public class Player : MonoBehaviour
                         if (currentw >= 20)
                         {
                             Debug.Log("ww combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL WW COMBO
+
+                            wBlasterObject.doubleCombo(); //"WW" combo execution
+
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 20;
                             timeLastBarChange = timer;
@@ -341,7 +363,9 @@ public class Player : MonoBehaviour
                         if (currentw >= 5)
                         {
                             Debug.Log("w combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL W COMBO
+
+                            wBlasterObject.singleCombo(); //"W" combo execution
+
                             yield return StartCoroutine(WaitFrames(50));
                             currentw -= 5;
                             timeLastBarChange = timer;
@@ -364,7 +388,9 @@ public class Player : MonoBehaviour
                     if (currente >= 45)
                     {
                         Debug.Log("eee combo!");
-                        //PLACEHOLDER HERE TO CALL ACTUAL EEE COMBO
+
+                        eBlasterObject.tripleCombo(); //"EEE" combo execution
+
                         yield return StartCoroutine(WaitFrames(50));
                         currente -= 45;
                         timeLastBarChange = timer;
@@ -383,7 +409,9 @@ public class Player : MonoBehaviour
                         if (currente >= 20)
                         {
                             Debug.Log("ee combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL WW COMBO
+
+                            eBlasterObject.doubleCombo(); //"EE" combo execution
+
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 20;
                             timeLastBarChange = timer;
@@ -400,7 +428,9 @@ public class Player : MonoBehaviour
                         if (currente >= 5)
                         {
                             Debug.Log("e combo!");
-                            //PLACEHOLDER HERE TO CALL ACTUAL E COMBO
+                            
+                            eBlasterObject.singleCombo(); //"E" combo execution
+
                             yield return StartCoroutine(WaitFrames(50));
                             currente -= 5;
                             timeLastBarChange = timer;
@@ -435,10 +465,7 @@ public class Player : MonoBehaviour
 
     private void printArray() //Debugging method
     {
-        for (int i = 0; i < comboLetters.Length; i++)
-        {
-            Debug.Log(i + ": " + comboLetters[i]);
-        }
+        Debug.Log("Letter Array: " + new string(comboLetters));
     }
 
     private void FixedUpdate()
