@@ -45,6 +45,21 @@ public class DeathSpawnEnemies : MonoBehaviour
         if (pos.x < -15){
             Destroy(gameObject);
         }
+        //destroy object if lifetime hits 0 and spawn children enemies
+        if (lifetime < 0){
+            spawnChildren();
+        }
+        //destroy object if health drops to or below 0 and spawn children enemies
+        if (currentHealth <= 0 && !dead)
+        {
+            spawnChildren();
+        }
+    }
+
+    private void FixedUpdate(){
+        if(timedDeath){
+            lifetime -= Time.fixedDeltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,20 +79,26 @@ public class DeathSpawnEnemies : MonoBehaviour
 
             //destroy Bullet object
             Destroy(bullet.gameObject);
-
-            //destroy object if health drops to or below 0 and spawn children enemies
-            if (currentHealth <= 0 && !dead)
-            {
-                if(childPositionRelativeToParent){
-                    for(int j = 0; j < enemiesPosition.Length; j++){
-                        enemiesPosition[j] += (Vector2)transform.position;
-                    }
-                }
-                for (int i = 0; i < enemiesToSpawn.Length; i++){
-                    Instantiate(enemiesToSpawn[i], enemiesPosition[i], Quaternion.Euler(Vector3.forward * enemiesDegreeRotation[i]));
-                }
-                Destroy(gameObject);
+            
+        }
+        if (collision.tag == "Explosion")
+        {
+            Explosive explosive = collision.GetComponent<Explosive>();
+            currentHealth = Mathf.Clamp(currentHealth - explosive.explosionDamage, 0, startingHealth);
+        }
+    }
+    
+    private void spawnChildren()
+    {
+        dead = true;
+        if(childPositionRelativeToParent){
+            for(int j = 0; j < enemiesPosition.Length; j++){
+                enemiesPosition[j] += (Vector2)transform.position;
             }
         }
+        for (int i = 0; i < enemiesToSpawn.Length; i++){
+            Instantiate(enemiesToSpawn[i], enemiesPosition[i], Quaternion.Euler(Vector3.forward * enemiesDegreeRotation[i]));
+        }
+        Destroy(gameObject);
     }
 }

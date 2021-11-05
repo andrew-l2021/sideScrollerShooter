@@ -32,6 +32,6 @@ public class Gun : MonoBehaviour
         Bullet goBullet = go.GetComponent<Bullet>(); //Get Component of Bullet to modify values
         //Debug.Log("Bullet Damage: " + goBullet.bulletDamage * damagePercentage); //Debug to check bullet damage with damagePercentage modifier
         goBullet.bulletDamage *= damagePercentage; //Modify bulletDamage by damagePercentage
-        goBullet.direction = direction; //set direction of bullet to the direction that the gun is pointing
+        //goBullet.direction = direction; //set direction of bullet to the direction that the gun is pointing
     }
 }

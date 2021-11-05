@@ -37,6 +37,12 @@ public class DeathStandard : MonoBehaviour
         if (pos.x < -15 || lifetime < 0){
             Destroy(gameObject);
         }
+        //destroy object if health drops to or below 0
+        if (currentHealth <= 0 && !dead)
+        {
+            dead = true;
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate(){
@@ -63,11 +69,11 @@ public class DeathStandard : MonoBehaviour
             //destroy Bullet object
             Destroy(bullet.gameObject);
 
-            //destroy object if health drops to or below 0
-            if (currentHealth <= 0 && !dead)
-            {
-                Destroy(gameObject);
-            }
+        }
+        if (collision.tag == "Explosion")
+        {
+            Explosive explosive = collision.GetComponent<Explosive>();
+            currentHealth = Mathf.Clamp(currentHealth - explosive.explosionDamage, 0, startingHealth);
         }
     }
 }
