@@ -5,15 +5,22 @@ using UnityEngine;
 public class QBlaster : Blaster
 {
     //Inspector variables
-    //Single Q Bullet Objects
+    //Single Q Variables
+    [Header("Single Q Parameters")]
     [SerializeField] private Bullet bigSQBulletObject;
     [SerializeField] private Bullet smallSQBulletObject;
 
-    //Double Q Bullet Objects
+    //Double Q Variables
+    [Header("Double Q Parameters")]
     [SerializeField] private ExplosiveBall ExplosiveDQObject;
 
-    //Triple Q Bullet Objects
-
+    //Triple Q Variables
+    [Header("Triple Q Parameters")]
+    [SerializeField] private ExplosiveHomingBall ExplosiveTQObject;
+    [SerializeField] private float numberOfExplosives = 8;
+    [SerializeField] private float explosivesSpawnRadius = 1;
+    [SerializeField] private float timeBetweenExplosivesSpawn = 0.1F;
+    
 
     //Note: SQ stands for Single Q, DQ stands for Double Q, TQ stands for Triple Q
     //To Do: Make Bullets phase through/destroy enemy bullets
@@ -51,13 +58,27 @@ public class QBlaster : Blaster
         damagePercentage = playerGameObject.currentDamagePercentage;
         
         GameObject ExpBall = Instantiate(ExplosiveDQObject.gameObject, transform.position, Quaternion.identity);
-            ExplosiveBall explosiveBall = ExpBall.GetComponent<ExplosiveBall>();
-            explosiveBall.damagePercentage = damagePercentage;
+        ExplosiveBall explosiveBall = ExpBall.GetComponent<ExplosiveBall>();
+        explosiveBall.damagePercentage = damagePercentage;
     }
 
     public override void tripleCombo()
     {
         Debug.Log("QBlaster_TripleComboFire | Current Damage Percentage: " + playerGameObject.currentDamagePercentage + " | element: " + element);
-        //throw new System.NotImplementedException();
+        damagePercentage = playerGameObject.currentDamagePercentage;
+        
+        StartCoroutine(tripleComboExecution(damagePercentage));
+    }
+
+    IEnumerator tripleComboExecution(float damagePercentage)
+    {
+        for(int i = 0; i < numberOfExplosives; i++){
+            Debug.Log("Loop Running");
+            Vector2 explosivePos = new Vector2(explosivesSpawnRadius * Mathf.Cos(2*Mathf.PI*(i/numberOfExplosives)), explosivesSpawnRadius * Mathf.Sin(2*Mathf.PI*(i/numberOfExplosives)));
+            GameObject ExpHomingBall = Instantiate(ExplosiveTQObject.gameObject, (Vector2)transform.position + explosivePos, Quaternion.identity);
+            ExplosiveHomingBall explosiveHomingBall = ExpHomingBall.GetComponent<ExplosiveHomingBall>();
+            explosiveHomingBall.damagePercentage = damagePercentage;
+            yield return new WaitForSeconds(timeBetweenExplosivesSpawn);
+        }
     }
 }
