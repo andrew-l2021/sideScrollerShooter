@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5545427839550369980}
   - component: {fileID: 3448772176288704426}
   m_Layer: 0
-  m_Name: EnemyZigZagToPos
+  m_Name: EnemyPH2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,10 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 5
-  timedDeath: 0
-  lifetime: 5
-  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
-  points: 8
 --- !u!114 &-5545427839550369980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,4 +173,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}

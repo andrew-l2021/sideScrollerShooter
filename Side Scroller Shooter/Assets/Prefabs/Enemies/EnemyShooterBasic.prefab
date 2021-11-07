@@ -149,6 +149,8 @@ MonoBehaviour:
   startingHealth: 5
   timedDeath: 0
   lifetime: 5
+  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
+  points: 8
 --- !u!50 &8209959607371746374
 Rigidbody2D:
   serializedVersion: 4

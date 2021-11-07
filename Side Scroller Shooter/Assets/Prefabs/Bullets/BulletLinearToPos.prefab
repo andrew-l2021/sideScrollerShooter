@@ -163,6 +163,8 @@ MonoBehaviour:
   startingHealth: 1
   timedDeath: 1
   lifetime: 2
+  player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
+  points: 2
 --- !u!114 &-1429170087163375832
 MonoBehaviour:
   m_ObjectHideFlags: 0

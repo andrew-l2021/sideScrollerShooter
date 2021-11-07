@@ -11,6 +11,8 @@ public class DeathStandard : MonoBehaviour
     [Header("Automatic Death Parameters")]
     [SerializeField] public bool timedDeath = false;
     [SerializeField] public float lifetime = 5;
+    [SerializeField] private GameObject player;
+    [SerializeField] private int points;
 
     //Instance Variables
     bool canBeDestroyed = false;
@@ -67,6 +69,7 @@ public class DeathStandard : MonoBehaviour
             if (currentHealth <= 0 && !dead)
             {
                 Destroy(gameObject);
+                DisplayCombo.instance.AddPoints(points);
             }
         }
     }

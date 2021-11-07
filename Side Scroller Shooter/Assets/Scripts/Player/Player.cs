@@ -558,4 +558,21 @@ public class Player : MonoBehaviour
         currentDamagePercentage *= (1 + damageModifier);
         damageBuffTime = time;
     }
+
+    public void PermanentlyIncreaseRandomQWE() //Increases the Q, W, or E bar by anywhere between 5 and 10 points
+    {
+        int qweDeterminer = Random.Range(1, 3); //Range method returns a random integer (inclusive)
+        if (qweDeterminer == 1)
+        {
+            qBar += (int)Random.Range(5, 10);
+        }
+        if (qweDeterminer == 2)
+        {
+            wBar += (int)Random.Range(5, 10);
+        }
+        if (qweDeterminer == 3)
+        {
+            eBar += (int)Random.Range(5, 10);
+        }
+    }
 }
