@@ -5,7 +5,20 @@ using UnityEngine;
 public class EnemyGeneration : MonoBehaviour
 {
 
+    //easy enemies
     public GameObject defaultEnemy;
+    public GameObject enemyIntervalToPos;
+    public GameObject enemyLinear;
+
+    //medium enemies
+    public GameObject enemyLinearToPOs;
+    public GameObject enemyShooterBasic;
+    public GameObject enemyShooterHoming;
+
+    //hard enemies
+    public GameObject enemySplitter;
+    public GameObject enemyZigZag;
+
     public float timePeriodforEasyDifficulty = 60;
     public float timePeriodforMediumDifficulty = 120;
     public float timePeriodforHardDifficulty = 180;
@@ -64,9 +77,76 @@ public class EnemyGeneration : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject a = Instantiate(defaultEnemy) as GameObject;
+        GameObject enemy = null;
+        if (currentDifficulty == 0)
+        {
+            //Easy Enemies 1 in3
 
-        a.transform.position = new Vector2(screenBounds.x * 2, Random.Range(-screenBounds.y, screenBounds.y));
+            int random = Random.Range(1, 3);
+
+            if(random == 1)
+            {
+                enemy = Instantiate(defaultEnemy) as GameObject;
+            }
+            else if(random == 2)
+            {
+                enemy = Instantiate(enemyIntervalToPos) as GameObject;
+            }
+            else
+            {
+                enemy = Instantiate(enemyLinear) as GameObject;
+            }
+
+        }
+        else if(currentDifficulty == 1)
+        {
+            //Medium Enemies
+
+            int random = Random.Range(1, 3);
+
+            if (random == 1)
+            {
+                enemy = Instantiate(enemyLinearToPOs) as GameObject;
+            }
+            else if (random == 2)
+            {
+                enemy = Instantiate(enemyShooterBasic) as GameObject;
+            }
+            else
+            {
+                enemy = Instantiate(enemyShooterHoming) as GameObject;
+            }
+        }
+        else if(currentDifficulty == 2)
+        {
+            //Hard Enemies
+
+            int random = Random.Range(1, 2);
+
+            if (random == 1)
+            {
+                enemy = Instantiate(enemySplitter) as GameObject;
+            }
+            else if (random == 2)
+            {
+                enemy = Instantiate(enemyZigZag) as GameObject;
+            }
+        }
+        else
+        {
+            int random = Random.Range(1, 2);
+
+            if (random == 1)
+            {
+                enemy = Instantiate(enemySplitter) as GameObject;
+            }
+            else if (random == 2)
+            {
+                enemy = Instantiate(enemyZigZag) as GameObject;
+            }
+        }
+        GameObject a = Instantiate(defaultEnemy) as GameObject;
+        enemy.transform.position = new Vector2(screenBounds.x * 2.1f, Random.Range(-screenBounds.y, screenBounds.y));
     }
 
     private void AdjustDifficulty(int enemyOnScreenIncrease, int enemyDamageIncrease)

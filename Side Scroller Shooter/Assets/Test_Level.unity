@@ -167,6 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultEnemy: {fileID: 8196802556494881808, guid: 53dc9dc75a6e0b1458fe5a1f62939d53, type: 3}
+  enemyIntervalToPos: {fileID: 7712618169563336734, guid: a47f506bda9ac934da9310ce321065cf, type: 3}
+  enemyLinear: {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  enemyLinearToPOs: {fileID: 5401618560208872993, guid: c2376da29bbf7a44eab795b70a758597, type: 3}
+  enemyShooterBasic: {fileID: 8209959607371746371, guid: a27f4223a88054044aa502ab0f2d55c5, type: 3}
+  enemyShooterHoming: {fileID: 653443567332140156, guid: 6cc004176f8730345a4940439243f979, type: 3}
+  enemySplitter: {fileID: 7715735176009538665, guid: c3cdc9f7cbe3b6d48bbe30f310247cb6, type: 3}
+  enemyZigZag: {fileID: 3439156427918845773, guid: eace886bafc46eb429c2108b88894526, type: 3}
+  timePeriodforEasyDifficulty: 60
+  timePeriodforMediumDifficulty: 120
+  timePeriodforHardDifficulty: 180
   respawnTime: 1
 --- !u!1 &300028353
 GameObject:
@@ -184,7 +194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &300028354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -265,7 +275,7 @@ GameObject:
   - component: {fileID: 865773044}
   - component: {fileID: 865773045}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
