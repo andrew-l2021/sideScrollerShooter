@@ -19,10 +19,12 @@ public class EnemyGeneration : MonoBehaviour
     public GameObject enemySplitter;
     public GameObject enemyZigZag;
 
-    public float timePeriodforEasyDifficulty = 60;
-    public float timePeriodforMediumDifficulty = 120;
-    public float timePeriodforHardDifficulty = 180;
-    public float respawnTime = 1.0f; //
+    //amount time alloted for each respective difficulty before the game becomes harder
+    public float timePeriodForEasyDifficulty = 60;
+    public float timePeriodForMediumDifficulty = 120;
+    public float timePeriodForHardDifficulty = 180;
+
+    public float respawnTime = 1.0f; // respawn time of enemies
     private float difficultyTimer = 0.0f; // timer
     private float currentDifficulty = 0; // current difficulty
     private int enemiesAllowedOnScreen = 8; //default amount of enemies allowed on screen
@@ -33,7 +35,11 @@ public class EnemyGeneration : MonoBehaviour
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        timePeriodforMediumDifficulty += timePeriodforEasyDifficulty;
+
+        //time period is calculated by the seconds since the start of the game
+        timePeriodForMediumDifficulty += timePeriodForEasyDifficulty;
+        timePeriodForHardDifficulty += timePeriodForMediumDifficulty;
+
         StartCoroutine(Wave());
 
     }
@@ -48,25 +54,26 @@ public class EnemyGeneration : MonoBehaviour
         // 120 - 180 seconds = hard
         // 180 - infinity seconds = veryhard
 
-        if(difficultyTimer < timePeriodforEasyDifficulty && currentDifficulty != 0)
+        //adjusts the difficulty after the time period requires the game to get harder
+        if(difficultyTimer < timePeriodForEasyDifficulty && currentDifficulty != 0)
         {
             //easy difficulty
             currentDifficulty = 0;
             AdjustDifficulty(10, 2);
         }
-        if( (difficultyTimer > timePeriodforEasyDifficulty && difficultyTimer < timePeriodforMediumDifficulty) && currentDifficulty != 1)
+        if( (difficultyTimer > timePeriodForEasyDifficulty && difficultyTimer < timePeriodForMediumDifficulty) && currentDifficulty != 1)
         {
             //medium difficulty
             AdjustDifficulty(16, 4);
             currentDifficulty = 1;
         }
-        else if( (difficultyTimer > timePeriodforMediumDifficulty && difficultyTimer < timePeriodforHardDifficulty) && currentDifficulty != 2 )
+        else if( (difficultyTimer > timePeriodForMediumDifficulty && difficultyTimer < timePeriodForHardDifficulty) && currentDifficulty != 2 )
         {
             //hard difficulty
             currentDifficulty = 2;
             AdjustDifficulty(20, 6);
         }
-        else if( (difficultyTimer > timePeriodforHardDifficulty) && currentDifficulty != 3)
+        else if( (difficultyTimer > timePeriodForHardDifficulty) && currentDifficulty != 3)
         {
             //very hard difficulty
             currentDifficulty = 3;
@@ -78,9 +85,11 @@ public class EnemyGeneration : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemy = null;
+
+        //select an enemy from a pool based on the current difficulty
         if (currentDifficulty == 0)
         {
-            //Easy Enemies 1 in3
+            //Easy Enemies (variety of 3)
 
             int random = Random.Range(1, 3);
 
@@ -100,7 +109,7 @@ public class EnemyGeneration : MonoBehaviour
         }
         else if(currentDifficulty == 1)
         {
-            //Medium Enemies
+            //Medium Enemies (2 types)
 
             int random = Random.Range(1, 3);
 
@@ -119,7 +128,7 @@ public class EnemyGeneration : MonoBehaviour
         }
         else if(currentDifficulty == 2)
         {
-            //Hard Enemies
+            //Hard Enemies (2 types)
 
             int random = Random.Range(1, 2);
 
@@ -134,6 +143,7 @@ public class EnemyGeneration : MonoBehaviour
         }
         else
         {
+            //very hard enemies (2 types)
             int random = Random.Range(1, 2);
 
             if (random == 1)
@@ -149,12 +159,15 @@ public class EnemyGeneration : MonoBehaviour
         enemy.transform.position = new Vector2(screenBounds.x * 2.1f, Random.Range(-screenBounds.y, screenBounds.y));
     }
 
+
+    //changes the curent difficulty which effects the amount of enemies allowed on screen and their current damage
     private void AdjustDifficulty(int enemyOnScreenIncrease, int enemyDamageIncrease)
     {
         defaultEnemy.GetComponent<EnemyDamage>().SetDamage(enemyDamageIncrease);
         enemiesAllowedOnScreen = enemyOnScreenIncrease;
     }
 
+    //Ienumerator that spawns enemies continously
     IEnumerator Wave()
     {
         
