@@ -530,8 +530,8 @@ public class Player : MonoBehaviour
         Bullet bullet = collision.GetComponent<Bullet>();
         if (bullet != null)
         {
-            Destroy(gameObject);
-            Destroy(bullet);
+            //Destroy(gameObject);
+            //Destroy(bullet.gameObject);
         }
     }
 

@@ -163,10 +163,25 @@ MonoBehaviour:
   startingHealth: 5
   timedDeath: 0
   lifetime: 5
-  enemiesToSpawn: []
-  enemiesPosition: []
+  enemiesToSpawn:
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  enemiesPosition:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   childPositionRelativeToParent: 1
-  enemiesDegreeRotation: []
+  enemiesDegreeRotation:
+  - -30
+  - -15
+  - 0
+  - 15
+  - 30
 --- !u!114 &-8888723642519691455
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class EnemyGun : MonoBehaviour
 {
-    private Transform player;
+    //Inspector Variables
     public GameObject bullet;
     public GameObject bulletParent;
     [SerializeField] private float fireRate;
-    private float nextFireTime;
+    [SerializeField] private float startDelay;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    //Instance Variables
+    private float nextFireTime;
 
     // Update is called once per frame
     void Update()
     {
-        if (nextFireTime < Time.time && bulletParent.transform.position.x > -10)
+        if (nextFireTime < Time.time && bulletParent.transform.position.x > -10 && Time.time > startDelay)
         {
             Instantiate(bullet, bulletParent.transform.position, Quaternion.identity);
             nextFireTime = Time.time + fireRate;

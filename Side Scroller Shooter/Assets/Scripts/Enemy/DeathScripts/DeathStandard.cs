@@ -11,13 +11,11 @@ public class DeathStandard : MonoBehaviour
     [Header("Automatic Death Parameters")]
     [SerializeField] public bool timedDeath = false;
     [SerializeField] public float lifetime = 5;
-    [SerializeField] private GameObject player;
     [SerializeField] private int points;
 
     //Instance Variables
     bool canBeDestroyed = false;
     public float currentHealth { get; private set; }
-    private Animator anim;
     private bool dead;
     private Vector2 pos;
 
@@ -25,7 +23,6 @@ public class DeathStandard : MonoBehaviour
     void Start()
     {
         currentHealth = startingHealth;
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,7 +51,7 @@ public class DeathStandard : MonoBehaviour
             //subtract bulletDamage from the currentHealth of the Enemy
             Bullet bullet = collision.GetComponent<Bullet>();
             currentHealth = Mathf.Clamp(currentHealth - bullet.bulletDamage, 0, startingHealth);
-            Debug.Log("Enemy Health: " + currentHealth);
+            //Debug.Log("Enemy Health: " + currentHealth);
 
             //ignore destroy code if Enemy cannot be destroyed
             if (!canBeDestroyed)

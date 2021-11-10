@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   timedDeath: 1
-  lifetime: 2
+  lifetime: 3
   player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
   points: 2
 --- !u!61 &644714531594694867

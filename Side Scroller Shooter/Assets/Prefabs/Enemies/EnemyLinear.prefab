@@ -151,6 +151,7 @@ MonoBehaviour:
   lifetime: 5
   player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
   points: 3
+  particlesOnDeath: {fileID: 8073385431493775513, guid: bf7e214592ce156499bfa850db77bfc6, type: 3}
 --- !u!114 &964220693303722005
 MonoBehaviour:
   m_ObjectHideFlags: 0

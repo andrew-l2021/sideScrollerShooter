@@ -15,9 +15,16 @@ public class MoveLinearToPos : MonoBehaviour
     {
         //getting position, calculating and normalizing velocity vector based on Player position and Enemy spawn position, applying velocity to Rigidbody2D
         enemyComponent = GetComponent<Rigidbody2D>();
-        pos = transform.position; 
+        pos = transform.position;
         targetLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
         enemyComponent.velocity = (targetLocation - pos).normalized * moveSpeed;
+
+        //Turn towards player
+        var offset = 90f;
+        Vector2 direction = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
     // Update is called once per frame
