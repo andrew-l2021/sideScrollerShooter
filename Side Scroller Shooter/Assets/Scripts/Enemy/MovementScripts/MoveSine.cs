@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveSine : MonoBehaviour
+public class MoveSine : MovementBase
 {
-    float sinCenterY;
+    //Inspector Variables
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
     [SerializeField] bool inverted;
-    [SerializeField] float moveSpeed = 5;
+
+    //Instance Variables
+    float sinCenterY;
 
     // Start is called before the first frame update
     void Start()
@@ -24,20 +26,25 @@ public class MoveSine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 pos = transform.position;
+        if(freezeTime > 0){
+            freezeTime -= Time.fixedDeltaTime;
+        }else{
+            pos = transform.position;
 
-        //y position calculation
-        float sin = Mathf.Sin(pos.x * frequency) * amplitude;
-        if (inverted)
-        {
-            sin *= -1;
+            //y position calculation
+            float sin = Mathf.Sin(pos.x * frequency) * amplitude;
+            if (inverted)
+            {
+                sin *= -1;
+            }
+            pos.y = sinCenterY + sin;
+
+            //x position calculation
+            pos.x -= moveSpeed * Time.deltaTime;
+
+            //update position
+            transform.position = pos;
         }
-        pos.y = sinCenterY + sin;
-
-        //x position calculation
-        pos.x -= moveSpeed * Time.deltaTime;
-
-        //update position
-        transform.position = pos;
+        
     }
 }

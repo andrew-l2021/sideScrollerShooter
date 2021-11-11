@@ -9,6 +9,8 @@ public class QBlaster : Blaster
     [Header("Single Q Parameters")]
     [SerializeField] private Bullet bigSQBulletObject;
     [SerializeField] private Bullet smallSQBulletObject;
+    [SerializeField] private int numberOfSmallBullets = 8; //keep this as an even number to prevent overlapping with the bigger bullet
+    [SerializeField] private float maxAngleMagnitude = 10;
 
     //Double Q Variables
     [Header("Double Q Parameters")]
@@ -18,7 +20,7 @@ public class QBlaster : Blaster
     [Header("Triple Q Parameters")]
     [SerializeField] private ExplosiveHomingBall ExplosiveTQObject;
     [SerializeField] private float numberOfExplosives = 8;
-    [SerializeField] private float explosivesSpawnRadius = 1;
+    [SerializeField] private int explosivesSpawnRadius = 1;
     [SerializeField] private float timeBetweenExplosivesSpawn = 0.1F;
     
 
@@ -31,24 +33,14 @@ public class QBlaster : Blaster
         damagePercentage = playerGameObject.currentDamagePercentage;
         
         GameObject BB = Instantiate(bigSQBulletObject.gameObject, transform.position, Quaternion.identity);
-            Bullet bigBullet = BB.GetComponent<Bullet>();
-            bigBullet.bulletDamage *= damagePercentage;
+        Bullet bigBullet = BB.GetComponent<Bullet>();
+        bigBullet.bulletDamage *= damagePercentage;
 
-        GameObject SBU1 = Instantiate(smallSQBulletObject.gameObject, transform.position, Quaternion.Euler(Vector3.forward * 6));
-            Bullet smallBulletUp1 = SBU1.GetComponent<Bullet>();
-            smallBulletUp1.bulletDamage *= damagePercentage;
-
-        GameObject SBU2 = Instantiate(smallSQBulletObject.gameObject, transform.position, Quaternion.Euler(Vector3.forward * 12));
-            Bullet smallBulletUp2 = SBU2.GetComponent<Bullet>();
-            smallBulletUp2.bulletDamage *= damagePercentage;
-
-        GameObject SBD1 = Instantiate(smallSQBulletObject.gameObject, transform.position, Quaternion.Euler(Vector3.forward * -6));
-            Bullet smallBulletDown1 = SBD1.GetComponent<Bullet>();
-            smallBulletDown1.bulletDamage *= damagePercentage;
-
-        GameObject SBD2 = Instantiate(smallSQBulletObject.gameObject, transform.position, Quaternion.Euler(Vector3.forward * -12));
-            Bullet smallBulletDown2 = SBD2.GetComponent<Bullet>();
-            smallBulletDown2.bulletDamage *= damagePercentage;
+        for (int i = 0; i < numberOfSmallBullets; i++){
+            GameObject smallBulletGO = Instantiate(smallSQBulletObject.gameObject, transform.position, Quaternion.Euler(Vector3.forward * (maxAngleMagnitude - (2*maxAngleMagnitude*i)/(numberOfSmallBullets - 1))));
+            Bullet smallBullet = smallBulletGO.GetComponent<Bullet>();
+            smallBullet.bulletDamage *= damagePercentage;
+        }
         
     }
 
@@ -73,7 +65,7 @@ public class QBlaster : Blaster
     IEnumerator tripleComboExecution(float damagePercentage)
     {
         for(int i = 0; i < numberOfExplosives; i++){
-            Debug.Log("Loop Running");
+            //Debug.Log("Loop Running");
             Vector2 explosivePos = new Vector2(explosivesSpawnRadius * Mathf.Cos(2*Mathf.PI*(i/numberOfExplosives)), explosivesSpawnRadius * Mathf.Sin(2*Mathf.PI*(i/numberOfExplosives)));
             GameObject ExpHomingBall = Instantiate(ExplosiveTQObject.gameObject, (Vector2)transform.position + explosivePos, Quaternion.identity);
             ExplosiveHomingBall explosiveHomingBall = ExpHomingBall.GetComponent<ExplosiveHomingBall>();

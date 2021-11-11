@@ -438,6 +438,8 @@ MonoBehaviour:
   element: fire
   bigSQBulletObject: {fileID: -2216635644476887656, guid: 57cd321f5d0917441ba468264c1d4f69, type: 3}
   smallSQBulletObject: {fileID: -6725588545926585730, guid: 6116a7df8495acc438ba82b22ae71ecb, type: 3}
+  numberOfSmallBullets: 4
+  maxAngleMagnitude: 15
   ExplosiveDQObject: {fileID: 1890204858548119074, guid: 9ec1e4d543c34cc4ba2f7024b363c730, type: 3}
   ExplosiveTQObject: {fileID: -2342621183836971778, guid: 8638089f5e74b0d43a1e20c9892c86af, type: 3}
   numberOfExplosives: 9
@@ -468,7 +470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4744706498822496680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 510372193495733616}
@@ -487,3 +489,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: ice
+  SWBulletObject: {fileID: -6988872648246370733, guid: 49592236814908b40a3419456b609e9d, type: 3}
+  numberOfSWBulletsX4: 10
+  maxAngleMagnitude: 20
+  timeBetweenSWSpawn: 0.04
+  DWBulletObject: {fileID: -6710206762137848260, guid: 18401242f29c438419a49dfe24c29d0f, type: 3}
+  numberOfDWBulletsX3: 50
+  timeBetweenDWBulletsSpawn: 0.025
+  ExplosiveTWObject: {fileID: 1479769120406431947, guid: bb5bb8bfe01efc64d82588aee3f69e2c, type: 3}

@@ -75,5 +75,12 @@ public class DeathStandard : MonoBehaviour
             Explosive explosive = collision.GetComponent<Explosive>();
             currentHealth = Mathf.Clamp(currentHealth - explosive.explosionDamage, 0, startingHealth);
         }
+        if (collision.tag == "ExplosiveFreeze")
+        {
+            ExplosiveFreeze explosiveFreeze = collision.GetComponent<ExplosiveFreeze>();
+            currentHealth = Mathf.Clamp(currentHealth - explosiveFreeze.explosionDamage, 0, startingHealth);
+            Debug.Log(explosiveFreeze.freezeTime);
+            gameObject.GetComponent<MovementBase>().addFreezeTime(explosiveFreeze.freezeTime);
+        }
     }
 }

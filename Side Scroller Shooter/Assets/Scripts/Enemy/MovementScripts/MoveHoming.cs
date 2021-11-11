@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveHoming : MonoBehaviour
+public class MoveHoming : MovementBase
 {
-    [SerializeField] public float moveSpeed = 5;
+    //Inspector Variables
+
+    //Instance variables
     Transform player;
 
     // Start is called before the first frame update
@@ -16,6 +18,10 @@ public class MoveHoming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        if(freezeTime > 0){
+            freezeTime -= Time.deltaTime;
+        }else{
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        }
     }
 }

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveLinear : MonoBehaviour
+public class MoveLinear : MovementBase
 {
     //Inspector Variables
-    [SerializeField] float moveSpeed = 5;
 
     //Instance Variables
     Rigidbody2D enemyComponent;
@@ -14,12 +13,17 @@ public class MoveLinear : MonoBehaviour
     void Start()
     {
         enemyComponent = GetComponent<Rigidbody2D>();
-        enemyComponent.velocity = -transform.right * moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(freezeTime > 0){
+            freezeTime -= Time.deltaTime;
+            enemyComponent.velocity = Vector2.zero;
+        }else{
+            enemyComponent.velocity = -transform.right * moveSpeed;
+        }
     }
+
 }

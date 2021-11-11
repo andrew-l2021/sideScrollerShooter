@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Move in a straight line that intercepts the location of Player at spawn time, does not change trajectory if Player moves.
-public class MoveLinearToPos : MonoBehaviour
+public class MoveLinearToPos : MovementBase
 {
+    //Inspector Variables
+
+    //Instance Variables
     Vector2 targetLocation;
-    Vector2 pos;
-    [SerializeField] float moveSpeed = 5;
     Rigidbody2D enemyComponent;
 
     // Start is called before the first frame update
@@ -17,13 +18,18 @@ public class MoveLinearToPos : MonoBehaviour
         enemyComponent = GetComponent<Rigidbody2D>();
         pos = transform.position; 
         targetLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
-        enemyComponent.velocity = (targetLocation - pos).normalized * moveSpeed;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(freezeTime > 0){
+            freezeTime -= Time.deltaTime;
+            enemyComponent.velocity = Vector2.zero;
+        }else{
+            enemyComponent.velocity = (targetLocation - pos).normalized * moveSpeed;
+        }
     }
 
 }

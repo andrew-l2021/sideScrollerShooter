@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Shield
   - Explosion
+  - ExplosiveFreeze
   layers:
   - Default
   - TransparentFX
