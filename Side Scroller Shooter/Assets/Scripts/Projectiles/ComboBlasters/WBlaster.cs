@@ -5,7 +5,6 @@ using UnityEngine;
 public class WBlaster : Blaster
 {
     //Inspector Variables
-    //Single W Variables
     [Header("Single W Parameters")]
     [SerializeField] private Bullet SWBulletObject;
     [SerializeField] private int numberOfSWBulletsX4 = 8;

@@ -47,8 +47,8 @@ public class ExplosiveFreezeBall : MonoBehaviour
             if (collision.tag == "Enemy")
             {
                 StartCoroutine(explode());
+                exploded = true;
             }
-            exploded = true;
         }
     }
 
