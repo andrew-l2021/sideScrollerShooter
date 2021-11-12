@@ -17,8 +17,11 @@ public class BossOneInner : BossOne
     {
         //Rotation
         timer += Time.deltaTime;
-        rotationRate = rotationCurve.Evaluate(timer) * rotationConstant;
-        transform.RotateAround(colliderBounds.bounds.center, Vector3.forward, rotationRate);
+        if (Time.timeScale != 0) //Checks if game is not paused
+        {
+            rotationRate = rotationCurve.Evaluate(timer) * rotationConstant;
+            transform.RotateAround(colliderBounds.bounds.center, Vector3.forward, rotationRate);
+        }
 
         //Death
         if (bossMasterClass.currentHealth <= 0)
@@ -35,6 +38,7 @@ public class BossOneInner : BossOne
             rotationConstant = 1;
 
             //Boss Projectile Settings
+            bossProjectileSpawner.activelyFiring = true;
             bossProjectileSpawner.randomFire = false;
             bossProjectileSpawner.moreThanOneProjectile = false;
             bossProjectileSpawner.numberOfProjectilesPerBurst = 3;
@@ -47,6 +51,7 @@ public class BossOneInner : BossOne
             rotationConstant = 3;
 
             //Boss Projectile Settings
+            bossProjectileSpawner.activelyFiring = true;
             bossProjectileSpawner.randomFire = false;
             bossProjectileSpawner.moreThanOneProjectile = false;
             bossProjectileSpawner.numberOfProjectilesPerBurst = 1;
@@ -59,6 +64,7 @@ public class BossOneInner : BossOne
             rotationConstant = 5;
 
             //Boss Projectile Settings
+            bossProjectileSpawner.activelyFiring = true;
             bossProjectileSpawner.randomFire = false;
             bossProjectileSpawner.moreThanOneProjectile = true;
             bossProjectileSpawner.fireRate = 15;

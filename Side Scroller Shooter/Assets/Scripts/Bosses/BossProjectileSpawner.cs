@@ -9,6 +9,7 @@ public class BossProjectileSpawner : MonoBehaviour
     public GameObject[] bulletParents;
 
     /* CUSTOM ATTRIBUTES */
+    [HideInInspector] public bool activelyFiring;
     [HideInInspector] public float fireRate;
 
     [HideInInspector] public int numberOfProjectilesPerBurst; //Can fire more than one projectile at a time if set greater than 1
@@ -30,7 +31,7 @@ public class BossProjectileSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nextFireTime < Time.time)
+        if (nextFireTime < Time.time && activelyFiring)
         {
             //Fires projectiles
             StartCoroutine(ExecuteFire());
@@ -57,7 +58,10 @@ public class BossProjectileSpawner : MonoBehaviour
                 {
                     Instantiate(projectiles[projectileNumber], bulletParents[bulletParentNumber].transform.position, Quaternion.identity);
                 }
-                yield return new WaitForSeconds(0.5f); //Time in between each burst fire
+                if (burstNumber < numberOfProjectilesPerBurst - 1)
+                {
+                    yield return new WaitForSeconds(0.5f); //Time in between each burst fire
+                }
             }
         } else
         {
@@ -69,7 +73,10 @@ public class BossProjectileSpawner : MonoBehaviour
                     {
                         Instantiate(projectiles[projectileList[projectileTypeInList]], bulletParents[bulletParentNumber].transform.position, Quaternion.identity);
                     }
-                    yield return new WaitForSeconds(0.5f); //Time in between each burst fire
+                    if (burstNumber < burstList[projectileTypeInList] - 1)
+                    {
+                        yield return new WaitForSeconds(0.5f); //Time in between each burst fire
+                    }
                 }
             }
         }

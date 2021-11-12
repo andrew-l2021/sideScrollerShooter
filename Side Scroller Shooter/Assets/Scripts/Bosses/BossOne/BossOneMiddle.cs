@@ -18,6 +18,7 @@ public class BossOneMiddle : BossOne
         if (bossMasterClass.phase == 1) //Spawns regular enemies in sine wave at a burst fire of 2 per burst
         {
             //Boss Projectile Settings
+            bossProjectileSpawner.activelyFiring = true;
             bossProjectileSpawner.randomFire = false;
             bossProjectileSpawner.moreThanOneProjectile = false;
             bossProjectileSpawner.numberOfProjectilesPerBurst = 2;
@@ -27,6 +28,7 @@ public class BossOneMiddle : BossOne
         if (bossMasterClass.phase == 2) //Spawns EnemyShooterBasics at random intervals
         {
             //Boss Projectile Settings
+            bossProjectileSpawner.activelyFiring = true;
             bossProjectileSpawner.randomFire = true;
             bossProjectileSpawner.moreThanOneProjectile = false;
             bossProjectileSpawner.numberOfProjectilesPerBurst = 1;
