@@ -9,7 +9,7 @@ public abstract class Blaster : MonoBehaviour
 
     //Instance Variables
     protected Player playerGameObject; //protected allows for all extending classes to call playerGameObject, acts as private in extended classes
-    private float damagePercentage;
+    protected float damagePercentage;
 
     //Methods
     public abstract void singleCombo();
