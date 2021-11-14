@@ -12,13 +12,13 @@ public class EnemyDamage : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<Health>().TakeDamage(damage);
-            Destroy(gameObject);
             player.GetComponent<Player>().timeLastQBarChange = player.GetComponent<Player>().timer;
             player.GetComponent<Player>().timeLastWBarChange = player.GetComponent<Player>().timer;
             player.GetComponent<Player>().timeLastEBarChange = player.GetComponent<Player>().timer;
             player.GetComponent<Player>().currentQRate = player.GetComponent<Player>().maxQRate / 2; //Resets regeneration acceleration
             player.GetComponent<Player>().currentWRate = player.GetComponent<Player>().maxWRate / 2;
             player.GetComponent<Player>().currentERate = player.GetComponent<Player>().maxERate / 2;
+            Destroy(gameObject);
         }
         if (collision.tag == "Shield")
         {

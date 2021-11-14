@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1713225701
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
   m_Color: {r: 1, g: 0, b: 1, a: 1}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c82194d4494bdc4f9b2ea05fd5606c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   player: {fileID: 510372193495733617, guid: b3ad9e289a63ea0469f1774e371a8dfd, type: 3}
 --- !u!114 &-9149627733821535433
 MonoBehaviour:
@@ -163,10 +163,25 @@ MonoBehaviour:
   startingHealth: 5
   timedDeath: 0
   lifetime: 5
-  enemiesToSpawn: []
-  enemiesPosition: []
+  enemiesToSpawn:
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  - {fileID: 11227169809631733, guid: 1d7aa409f7addb84c9e36717394d26fa, type: 3}
+  enemiesPosition:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   childPositionRelativeToParent: 1
-  enemiesDegreeRotation: []
+  enemiesDegreeRotation:
+  - -30
+  - -15
+  - 0
+  - 15
+  - 30
 --- !u!114 &-8888723642519691455
 MonoBehaviour:
   m_ObjectHideFlags: 0

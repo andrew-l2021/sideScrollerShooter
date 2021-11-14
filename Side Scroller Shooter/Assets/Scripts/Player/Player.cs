@@ -97,123 +97,128 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveUp = Input.GetKey(KeyCode.UpArrow);
-        moveDown = Input.GetKey(KeyCode.DownArrow);
-        moveLeft = Input.GetKey(KeyCode.LeftArrow);
-        moveRight = Input.GetKey(KeyCode.RightArrow);
-        pressq = Input.GetKeyDown(KeyCode.Q);
-        pressw = Input.GetKeyDown(KeyCode.W);
-        presse = Input.GetKeyDown(KeyCode.E);
-        pressSpace = Input.GetKeyDown(KeyCode.Space);
-        presst = Input.GetKeyDown(KeyCode.T);
-
-        timer += Time.deltaTime;
-
-        //counts time for speed up buff
-        if (speedBuffTime > 0)
+        if (Time.timeScale != 0) //Checks if game is not paused
         {
-            speedBuffTime -= Time.deltaTime;
+            moveUp = Input.GetKey(KeyCode.UpArrow);
+            moveDown = Input.GetKey(KeyCode.DownArrow);
+            moveLeft = Input.GetKey(KeyCode.LeftArrow);
+            moveRight = Input.GetKey(KeyCode.RightArrow);
+            pressq = Input.GetKeyDown(KeyCode.Q);
+            pressw = Input.GetKeyDown(KeyCode.W);
+            presse = Input.GetKeyDown(KeyCode.E);
+            pressSpace = Input.GetKeyDown(KeyCode.Space);
+            presst = Input.GetKeyDown(KeyCode.T);
 
-            if(speedBuffTime <= 0 )
+            timer += Time.deltaTime;
+
+            //counts time for speed up buff
+            if (speedBuffTime > 0)
             {
-                //when the the timer is up end the speedboost
-                currentSpeed = speed;
-            }
-        }
+                speedBuffTime -= Time.deltaTime;
 
-        //counts time for fire rate buff
-        if (fireRateBuffTime > 0)
-        {
-            fireRateBuffTime -= Time.deltaTime;
-
-            if (fireRateBuffTime <= 0)
-            {
-                //when the the timer is up end the speedboost
-                currentFireRate = fireRate;
-            }
-        }
-
-        //counts time for damage buff
-        if (damageBuffTime > 0)
-        {
-            damageBuffTime -= Time.deltaTime;
-
-            if (damageBuffTime <= 0)
-            {
-                //when the the timer is up end the speedboost
-                currentDamagePercentage = damagePercentage;
-            }
-        }
-
-        //Shooting
-        shoot = Input.GetKey(KeyCode.R);
-        if (shoot) //Spam shooting or Hold "R" shooting (limited to fireRate)
-        {
-            if (timer > currentFireRate + lastShot)
-            {
-                foreach (Gun gun in guns)
+                if (speedBuffTime <= 0)
                 {
-                    gun.Shoot();
+                    //when the the timer is up end the speedboost
+                    currentSpeed = speed;
                 }
-                lastShot = timer;
             }
-        }else{
-            lastShot = timer - currentFireRate;
-        }
 
-        //Combos
-
-        if (presst) //Clears combo array
-        {
-            comboLetters = new char[9];
-            printArray();
-            Debug.Log("Cleared combos!");
-        }
-
-        if (pressq)
-        {
-            AddCombo('q');
-        }
-
-        if (pressw)
-        {
-            AddCombo('w');
-        }
-
-        if (presse)
-        {
-            AddCombo('e');
-        }
-
-        if (pressSpace)
-        {
-            StartCoroutine(ExecuteCombo());
-        }
-
-        //QWE Bar Regeneration
-
-        if (timer - timeLastQBarChange > 5 && currentq < qBar)
-        {
-            currentq += currentQRate * Time.deltaTime;
-            if (currentQRate < maxQRate)
+            //counts time for fire rate buff
+            if (fireRateBuffTime > 0)
             {
-                currentQRate *= 1.0001f;
+                fireRateBuffTime -= Time.deltaTime;
+
+                if (fireRateBuffTime <= 0)
+                {
+                    //when the the timer is up end the speedboost
+                    currentFireRate = fireRate;
+                }
             }
-        }
-        if (timer - timeLastWBarChange > 5 && currentw < wBar)
-        {
-            currentw += currentWRate * Time.deltaTime;
-            if (currentWRate < maxWRate)
+
+            //counts time for damage buff
+            if (damageBuffTime > 0)
             {
-                currentWRate *= 1.0001f;
+                damageBuffTime -= Time.deltaTime;
+
+                if (damageBuffTime <= 0)
+                {
+                    //when the the timer is up end the speedboost
+                    currentDamagePercentage = damagePercentage;
+                }
             }
-        }
-        if (timer - timeLastEBarChange > 5 && currente < eBar)
-        {
-            currente += currentERate * Time.deltaTime;
-            if (currentERate < maxERate)
+
+            //Shooting
+            shoot = Input.GetKey(KeyCode.R);
+            if (shoot) //Spam shooting or Hold "R" shooting (limited to fireRate)
             {
-                currentERate *= 1.0001f;
+                if (timer > currentFireRate + lastShot)
+                {
+                    foreach (Gun gun in guns)
+                    {
+                        gun.Shoot();
+                    }
+                    lastShot = timer;
+                }
+            }
+            else
+            {
+                lastShot = timer - currentFireRate;
+            }
+
+            //Combos
+
+            if (presst) //Clears combo array
+            {
+                comboLetters = new char[9];
+                printArray();
+                Debug.Log("Cleared combos!");
+            }
+
+            if (pressq)
+            {
+                AddCombo('q');
+            }
+
+            if (pressw)
+            {
+                AddCombo('w');
+            }
+
+            if (presse)
+            {
+                AddCombo('e');
+            }
+
+            if (pressSpace)
+            {
+                StartCoroutine(ExecuteCombo());
+            }
+
+            //QWE Bar Regeneration
+
+            if (timer - timeLastQBarChange > 5 && currentq < qBar)
+            {
+                currentq += currentQRate * Time.deltaTime;
+                if (currentQRate < maxQRate)
+                {
+                    currentQRate *= 1.0001f;
+                }
+            }
+            if (timer - timeLastWBarChange > 5 && currentw < wBar)
+            {
+                currentw += currentWRate * Time.deltaTime;
+                if (currentWRate < maxWRate)
+                {
+                    currentWRate *= 1.0001f;
+                }
+            }
+            if (timer - timeLastEBarChange > 5 && currente < eBar)
+            {
+                currente += currentERate * Time.deltaTime;
+                if (currentERate < maxERate)
+                {
+                    currentERate *= 1.0001f;
+                }
             }
         }
     }
@@ -513,13 +518,13 @@ public class Player : MonoBehaviour
         {
             pos.x = 8.32f;
         }
-        if (pos.y >= 4.47f)
+        if (pos.y >= 3.74f)
         {
-            pos.y = 4.47f;
+            pos.y = 3.74f;
         }
-        if (pos.y <= -4.47f)
+        if (pos.y <= -3.86f)
         {
-            pos.y = -4.47f;
+            pos.y = -3.86f;
         }
 
         transform.position = pos;
@@ -530,8 +535,8 @@ public class Player : MonoBehaviour
         Bullet bullet = collision.GetComponent<Bullet>();
         if (bullet != null)
         {
-            Destroy(gameObject);
-            Destroy(bullet);
+            //Destroy(gameObject);
+            //Destroy(bullet.gameObject);
         }
     }
 
@@ -557,5 +562,22 @@ public class Player : MonoBehaviour
         Debug.Log("Damage Increased!");
         currentDamagePercentage *= (1 + damageModifier);
         damageBuffTime = time;
+    }
+
+    public void PermanentlyIncreaseRandomQWE() //Increases the Q, W, or E bar by anywhere between 5 and 10 points
+    {
+        int qweDeterminer = Random.Range(1, 3); //Range method returns a random integer (inclusive)
+        if (qweDeterminer == 1)
+        {
+            qBar += (int)Random.Range(5, 10);
+        }
+        if (qweDeterminer == 2)
+        {
+            wBar += (int)Random.Range(5, 10);
+        }
+        if (qweDeterminer == 3)
+        {
+            eBar += (int)Random.Range(5, 10);
+        }
     }
 }

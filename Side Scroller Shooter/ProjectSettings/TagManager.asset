@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Bullet
   - Shield
+  - Boss
+  - ProjectileDirection
   - Explosion
   - ExplosiveFreeze
   layers:
@@ -48,4 +50,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: sprites
+    uniqueID: 1713225701
+    locked: 0
+  - name: UI
+    uniqueID: 1123415013
     locked: 0
