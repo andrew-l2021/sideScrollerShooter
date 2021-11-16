@@ -10,6 +10,7 @@ public class ExplosiveBall : MonoBehaviour
     [SerializeField] private float initialSpeed = 1.0F;
     [SerializeField] private float acceleration = 1.0F;
     [SerializeField] private float jerk = 1.0F; //derivative of acceleration
+    [SerializeField] private Vector2 explosionOffset = new Vector2(0, 0.87F);
     
 
     //Instance variables
@@ -53,7 +54,7 @@ public class ExplosiveBall : MonoBehaviour
     }
 
     private void explode(){
-        GameObject explosionObject = Instantiate(explosion, transform.position, Quaternion.identity);
+        GameObject explosionObject = Instantiate(explosion, (Vector2)transform.position + explosionOffset, Quaternion.identity);
         Debug.Log("Damage Percentage = " + damagePercentage);
         Debug.Log("Total Damage = " + explosionObject.GetComponent<Explosive>().explosionDamage * damagePercentage);
         explosionObject.GetComponent<Explosive>().explosionDamage *= damagePercentage;

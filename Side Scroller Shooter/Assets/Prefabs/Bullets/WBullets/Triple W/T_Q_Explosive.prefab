@@ -122,12 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e199139cf0b11a42b20cae6e66bdbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeExplosion: {fileID: 7182682507068569597, guid: b482358452716ba41a904372e99738d2, type: 3}
+  freezeExplosion: {fileID: 6473034062529859179, guid: 7b397db0d4a3ad14bac1907fa0a78305, type: 3}
   timeToExplosion: 5
   numberOfExplosionsPerLayer: 5
   numberOfLayers: 5
   distanceBetweenLayers: 1
   timeBetweenLayers: 0.075
-  initialSpeed: 2
+  initialSpeed: 4
   acceleration: 2
   jerk: 4

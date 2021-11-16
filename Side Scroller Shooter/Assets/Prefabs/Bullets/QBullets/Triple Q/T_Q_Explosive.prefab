@@ -122,8 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fedf43e87e1ec44a002631594a9c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 2692880153585727243, guid: bc7a2de3e9b0125469b9d8c7004bfaf4, type: 3}
+  explosion: {fileID: 2928821434026525162, guid: 4fb8410f7f86bcf4ebe5d273b502f8c0, type: 3}
   initialSpeed: 0
   acceleration: 0
   jerk: 30
   idleTime: 1.25
+  lifetime: 5
