@@ -38,5 +38,10 @@ public abstract class BossOne : MonoBehaviour
             Destroy(bullet.gameObject);
             bossMasterClass.decrementHealth(damageToBeDone);
         }
+        if (collision.tag == "Explosion")
+        {
+            Explosive explosive = collision.GetComponent<Explosive>();
+            bossMasterClass.decrementHealth(explosive.explosionDamage);
+        }
     }
 }

@@ -265,5 +265,10 @@ public class BossTwo : MonoBehaviour
             Destroy(bullet.gameObject);
             startingHealth -= damageToBeDone;
         }
+        if (collision.tag == "Explosion")
+        {
+            Explosive explosive = collision.GetComponent<Explosive>();
+            startingHealth -= explosive.explosionDamage;
+        }
     }
 }
