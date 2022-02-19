@@ -33,9 +33,9 @@ public class DisplayCombo : MonoBehaviour
     void Update()
     {
         comboString = "";
-        for (int i = 0; i < player.GetComponent<Player>().comboLetters.Length; i++)
+        for (int i = 0; i < player.GetComponent<Player>().comboLettersList.Count; i++)
         {
-            comboString += player.GetComponent<Player>().comboLetters[i];
+            comboString += player.GetComponent<Player>().comboLettersList[i];
         }
         comboWindow.text = "Current Combo: " + comboString;
 
