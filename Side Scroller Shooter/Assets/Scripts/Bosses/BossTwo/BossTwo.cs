@@ -219,8 +219,8 @@ public class BossTwo : MonoBehaviour
         bossProjectileSpawner.randomFire = true; ;
         bossProjectileSpawner.moreThanOneProjectile = false;
         bossProjectileSpawner.numberOfProjectilesPerBurst = 1;
-        bossProjectileSpawner.randomFireMinimumTime = 0.2f;
-        bossProjectileSpawner.randomFireMaximumTime = 0.4f;
+        bossProjectileSpawner.randomFireMinimumTime = 0.1f;
+        bossProjectileSpawner.randomFireMaximumTime = 0.2f;
         bossProjectileSpawner.projectileNumber = 0;
         StartCoroutine(moveWave());
         yield return new WaitForSeconds(3);
@@ -236,12 +236,16 @@ public class BossTwo : MonoBehaviour
     IEnumerator moveWave() //Calculates sine wave for the boss to move in
     {
         enemyMoveStart = Time.time;
-        while (Time.time < enemyMoveStart + 3)
+        float sinCenterY = 0f;
+        float sinCenterX = transform.position.x;
+
+        while (Time.time < enemyMoveStart + 3) //script runs for 3 seconds
         {
             Vector2 pos = transform.position;
 
-            pos.y = Mathf.Sin(pos.x * 3) * 3; //y position calculation
-            pos.x -= 2 * Time.deltaTime; //x position calculation
+            float sin = Mathf.Sin((sinCenterX - pos.x) * 3) * 3; //y position calculation
+            pos.y = sinCenterY + sin;
+            pos.x += (enemyMoveStart - Time.time) * 0.005f; //x position calculation
 
             //update position
             transform.position = pos;
